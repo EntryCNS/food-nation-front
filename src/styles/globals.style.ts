@@ -6,6 +6,15 @@ const GlobalStyle = createGlobalStyle`
       * {
         box-sizing: border-box;
       }
+      html{
+        height:100%;
+      }
+      div{
+        background-color:${(props) => props.theme.background};
+      }
+      #__next{
+        background-color:${(props) => props.theme.htmlBackground};
+      }
       body{
         font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
       }
@@ -20,6 +29,10 @@ const GlobalStyle = createGlobalStyle`
       }
       h1, h2, h3, h4, h5, h6{
         font-family:'Maven Pro', sans-serif;
+        color:${(props) => props.theme.title}
+      }
+      p{
+        color:${(props) => props.theme.description}
       }
 
       @media only screen and (max-width: 768px) {
