@@ -16,15 +16,17 @@
     "incremental": true,
     "baseUrl": "src",
     "paths": {
-      "components":["components/*"],
-      "pages":["/pags"],
-      "containers":["/containers/*"],
-      "stores":["/stroes/*"],
-      "styles":["/styles/*"],
-      "assets":["/assets/*"],
-      "util":["/util/*"]
+      "components": ["components/*"],
+      "pages": ["/pags"],
+      "containers": ["/containers/*"],
+      "stores": ["/stroes/*"],
+      "styles": ["/styles/*"],
+      "assets": ["/assets/*"],
+      "util": ["/util/*"],
+      "data": ["/data/*"],
+      "lib": ["/lib/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.json"],
   "exclude": ["node_modules"]
 }
