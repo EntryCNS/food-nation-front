@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { lightTheme } from "styles/theme";
 
 export const Container = styled.div`
-  @media screen and (min-width: 1600px) {
+  @media screen and (min-width: 1500px) {
     width: 600px;
     height: 738px;
     position: relative;
@@ -24,6 +24,7 @@ export const Container = styled.div`
       margin-left: 40px;
       flex-grow: 1;
       .kategory-nomal {
+        cursor: pointer;
         margin-top: 40px;
         margin-right: 6px;
         width: 60px;
