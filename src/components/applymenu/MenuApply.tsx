@@ -17,6 +17,14 @@ const MenuApply = () => {
       ...inputs,
       [name]: value,
     });
+    // onReset()
+  };
+
+  const onReset = () => {
+    setInputs({
+      menuName: "",
+      menuDes: "",
+    });
   };
 
   return (
