@@ -4,6 +4,7 @@ import Image from "next/image";
 import { ListContainer } from "components/applymenu/applyListStyle";
 import image from "assets/image/heart.png";
 import checkImage from "assets/image/check.png";
+import menus from "lib/data/menu.json";
 
 const kategorys = [
   "전체",
@@ -13,109 +14,6 @@ const kategorys = [
   "양식",
   "디저트",
   "패스트푸드",
-];
-
-const menus = [
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "순살 치킨",
-    description:
-      "후라이드 치킨에 양념소스 따로 나왔으면 좋겠어요! 찍먹이 맛있거둥요",
-    tag: ["패스트푸드"],
-    good: 2,
-    check: false,
-  },
-  {
-    title: "딸기 우유",
-    description: "맛있겠다",
-    tag: ["디저트"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "방울토마토",
-    description:
-      "울퉁 불퉁 멋진 몸매에 빠알간 옷을 입고 새콤달콤 단내 풍기는 멋쟁이 토마토 (토마토) 나는야 주스될거야 ",
-    tag: ["디저트"],
-    good: 0,
-    check: false,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
-  {
-    title: "치즈 떡볶이",
-    description: "치즈 많이 넣어주세요, 그리고 매콤했으면 좋겠어요.",
-    tag: ["한식"],
-    good: 156,
-    check: true,
-  },
 ];
 
 const ApplyList: NextPage = () => {

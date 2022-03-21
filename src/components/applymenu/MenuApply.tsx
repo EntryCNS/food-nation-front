@@ -1,9 +1,10 @@
-import React, { useCallback, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { MenuContainer } from "components/applymenu/applyListStyle";
+import { NextPage } from "next";
 
 const kategorys = ["한식", "일식", "중식", "양식", "디저트", "패스트푸드"];
 
-const MenuApply = () => {
+const MenuApply: NextPage = React.memo(() => {
   const [check, setCheck] = useState(8);
   const [inputs, setInputs] = useState({
     menuName: "",
@@ -11,21 +12,24 @@ const MenuApply = () => {
   });
   const { menuName, menuDes } = inputs;
 
-  const onChange = (e: Event) => {
-    const { value, name }: any = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
-    // onReset()
-  };
+  const onChange = useCallback(
+    (e: Event) => {
+      const { value, name }: any = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+      // onReset()
+    },
+    [inputs]
+  );
 
-  const onReset = () => {
+  const onReset = useCallback(() => {
     setInputs({
       menuName: "",
       menuDes: "",
     });
-  };
+  }, []);
 
   return (
     <MenuContainer>
@@ -65,6 +69,6 @@ const MenuApply = () => {
       <button className="apply-button">신청하기</button>
     </MenuContainer>
   );
-};
+});
 
 export default MenuApply;
