@@ -4,6 +4,7 @@ import { lightTheme } from "styles/theme";
 const ProfileBarContainer = styled.div`
   width: 302px;
   height: 100vh;
+  display: inline-block;
   position: relative;
   background: ${lightTheme.gradient};
   .custom1 {
