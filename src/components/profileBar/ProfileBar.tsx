@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileBarContainer from "components/profileBar/profileBar.ts";
+import ProfileBarContainer from "components/profileBar/profileBarStyle";
 import Custom1 from "assets/image/profileCustom1.png";
 import Custom3 from "assets/image/profileCustom3.png";
 import Custom4 from "assets/image/profileCustom4.png";
