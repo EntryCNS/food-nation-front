@@ -1,5 +1,4 @@
-import MenuApply from "components/applymenu/MenuApply";
-import ApplyList from "components/applymenu";
+import { ApplyList, MenuApply } from "components/applymenu";
 import { NextPage } from "next";
 import React, { Suspense } from "react";
 
