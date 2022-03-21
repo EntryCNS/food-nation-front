@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NextPage } from "next";
 import Image from "next/image";
-import { Container } from "components/applymenu/applyListStyle";
+import { ListContainer } from "components/applymenu/applyListStyle";
 import image from "assets/image/heart.png";
 import checkImage from "assets/image/check.png";
 
@@ -121,11 +121,11 @@ const menus = [
 const ApplyList: NextPage = () => {
   const [check, setCheck] = useState(0);
   return (
-    <Container>
-      <div className="name">신청 목록</div>
-      <div className="nav-container">
-        {kategorys.map((i, index) => (
-          <nav
+    <ListContainer>
+      <h1 className="name">신청 목록</h1>
+      <nav className="nav-container">
+        {kategorys.map((i: Object, index: number) => (
+          <div
             className={`kategory${check === index ? "-blue" : "-nomal"}`}
             key={index}
             onClick={() => {
@@ -133,17 +133,17 @@ const ApplyList: NextPage = () => {
             }}
           >
             {i}
-          </nav>
+          </div>
         ))}
-      </div>
+      </nav>
       <div className="menu-container">
-        {menus.map((i, index) => (
+        {menus.map((i, index: number) => (
           <div key={index} className="menus">
             <h2 className="menus-title">{i.title}</h2>
             <p className="menus-description">{i.description}</p>
             <div className="menus-footer">
               <p className="menus-tags">
-                {i.tag.map((j, index) => (
+                {i.tag.map((j, index: number) => (
                   <div key={index}>#{j}</div>
                 ))}
               </p>
@@ -152,13 +152,13 @@ const ApplyList: NextPage = () => {
                 <Image src={image} width={10} height={11} />
               </span>
             </div>
-            <div className="menus-check">
+            <i className="menus-check">
               {i.check && <Image src={checkImage} width={11} height={8.5} />}
-            </div>
+            </i>
           </div>
         ))}
       </div>
-    </Container>
+    </ListContainer>
   );
 };
 
