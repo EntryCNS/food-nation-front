@@ -18,12 +18,14 @@ const Container = styled.div`
     margin-left: 40px;
   }
   .nav-container {
-    display: flex;
-    /* justify-content: space-between; */
-    flex-wrap: wrap;
-    margin-top: 40px;
-    margin-left: 40px;
-    flex-grow: 1;
+    .kategory-container {
+      display: flex;
+      /* justify-content: space-between; */
+      flex-wrap: wrap;
+      margin-top: 40px;
+      margin-left: 40px;
+      flex-grow: 1;
+    }
     .kategory-nomal {
       cursor: pointer;
       margin-right: 8px;
@@ -149,17 +151,19 @@ const MenuApply = () => {
     <Container>
       <h2 className="menu-container-title">급식 신청</h2>
       <div className="nav-container">
-        {kategorys.map((i, index) => (
-          <nav
-            className={`kategory${check === index ? "-blue" : "-nomal"}`}
-            key={index}
-            onClick={() => {
-              setCheck(index);
-            }}
-          >
-            {i}
-          </nav>
-        ))}
+        <nav className="kategory-container">
+          {kategorys.map((i, index) => (
+            <div
+              className={`kategory${check === index ? "-blue" : "-nomal"}`}
+              key={index}
+              onClick={() => {
+                setCheck(index);
+              }}
+            >
+              {i}
+            </div>
+          ))}
+        </nav>
       </div>
       <input
         type="text"
