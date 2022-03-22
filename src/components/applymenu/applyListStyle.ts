@@ -162,6 +162,7 @@ export const MenuContainer = styled.div`
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   position: relative;
+  margin-left: 70px;
   .menu-container-title {
     font-weight: 700;
     font-size: 16px;
