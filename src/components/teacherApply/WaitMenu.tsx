@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { lightTheme } from "styles/theme";
 import data from "./data.json";
@@ -10,6 +10,7 @@ const Container = styled.div`
   background: ${lightTheme.background};
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
+  position: relative;
   .title {
     font-family: "Roboto";
     font-style: normal;
@@ -108,10 +109,10 @@ const Container = styled.div`
     width: 50px;
     height: 22px;
     background: #ffffff;
-    border: 1px solid #fe8885;
+    border: 1px solid #1556f7;
     box-sizing: border-box;
     border-radius: 15px;
-    color: #fe8885;
+    color: #1555f7;
     font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
@@ -119,18 +120,18 @@ const Container = styled.div`
     line-height: 12px;
     transition: 0.2s;
     cursor: pointer;
+    margin-left: 8px;
   }
   .approve:hover {
-    background: #fe8885;
+    background: #1555f7;
     border: 1px solid #fff;
     transition: 0.2s;
     color: #fff;
   }
   .closed {
-    margin-left: 8px;
     width: 50px;
     background: #ffffff;
-    border: 1px solid #1556f7;
+    border: 1px solid #fe8885;
     box-sizing: border-box;
     border-radius: 15px;
     height: 22px;
@@ -140,10 +141,10 @@ const Container = styled.div`
     font-size: 10px;
     line-height: 12px;
     cursor: pointer;
-    color: #1556f7;
+    color: #fe8885;
   }
   .closed:hover {
-    background: #1556f7;
+    background: #fe8885;
     border: 1px solid #fff;
     transition: 0.2s;
     color: #fff;
@@ -163,9 +164,67 @@ const Container = styled.div`
     background: #f4f4f4;
     border-radius: 15px;
   }
+  .not {
+    width: 100%;
+    height: 100%;
+    background: none;
+    position: absolute;
+    top: -100%;
+    transition: background 0.3s;
+  }
+  .active {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s;
+  }
+  .alert {
+    background: #ffffff;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    width: 256px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+  }
+
+  .alert label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .alert label p {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    color: #636363;
+  }
+  .alert label button {
+    margin-left: 21px;
+    width: 59px;
+    height: 28px;
+    background: #ffffff;
+    border: 1px solid #434343;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
 `;
 
 const WaitMenu = () => {
+  const [visiable, setVisiable] = useState(false);
+  const closed = useCallback(() => {
+    setVisiable(!visiable);
+  }, [visiable]);
   return (
     <Container>
       <h2 className="title">대기 목록</h2>
@@ -176,7 +235,7 @@ const WaitMenu = () => {
             <p className="menuDes">{i.des}</p>
             <div className="navContainer">
               <nav>
-                {i.kategory.map((j, index) => (
+                {i.kategory.map((j: {}, index: number) => (
                   <p key={index}>#{j}&nbsp;</p>
                 ))}
               </nav>
@@ -197,12 +256,26 @@ const WaitMenu = () => {
               </div>
             </div>
             <div className="apply">
+              <button className="closed" onClick={closed}>
+                거절
+              </button>
               <button className="approve">수락</button>
-              <button className="closed">거절</button>
             </div>
           </div>
         ))}
       </div>
+      {visiable ? (
+        <div className="not active">
+          <div className="alert">
+            <label>
+              <p>거절되었습니다.</p>
+              <button onClick={closed}>확인</button>
+            </label>
+          </div>
+        </div>
+      ) : (
+        <div className="not"></div>
+      )}
     </Container>
   );
 };
