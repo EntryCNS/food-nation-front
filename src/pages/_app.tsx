@@ -8,8 +8,10 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={lightTheme}>
       <GlobalStyle />
-      <Component {...pageProps} />
-      <ProfileBar />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Component {...pageProps} />
+        <ProfileBar />
+      </div>
     </ThemeProvider>
   );
 }
