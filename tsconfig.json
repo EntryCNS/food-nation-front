@@ -22,7 +22,8 @@
       "stores":["/stroes/*"],
       "styles":["/styles/*"],
       "assets":["/assets/*"],
-      "util":["/util/*"]
+      "util":["/util/*"],
+      "interface":["/interface/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
