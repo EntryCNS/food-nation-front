@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
       ${reset}
       * {
         box-sizing: border-box;
+        color:${(props) => props.theme.title};
       }
       html{
         height:100%;
