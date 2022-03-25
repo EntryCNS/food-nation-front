@@ -1,10 +1,8 @@
-import styled from "styled-components";
-import Image from "next/image";
-import { lightTheme } from "styles/theme";
-import SVG from "react-inlinesvg"
+import styled, { css } from "styled-components";
+
 
 interface styleProps {
-    top: number;
+    top?: number;
     selected?: boolean;
 }
 
@@ -51,12 +49,19 @@ export const Navigate = styled.div`
             transition: 0.5s;
             cursor: pointer;
 
-            .img{
-                transition:2s;
-            }
         }
     }
     
+`
+export const IMG = styled.a<styleProps>`
+    .img{
+        transition:2s;
+        path{
+            fill:${(props) => props.theme.fontColor};
+           ${(props) => props.selected && css`fill:#fff`};
+            
+        }
+    }
 `
 
 export const Indicator = styled.div<styleProps>`
@@ -73,21 +78,15 @@ export const Indicator = styled.div<styleProps>`
 export const BoxIndicator = styled.div`
     width: 44px;
     height: 44px;
-    background: ${lightTheme.blue};
+    background: ${(props) => props.theme.blue};
     border-radius: 50%;
     border-radius: 15px;
 `
 export const DotIndicator = styled.div`
-    background-color:${lightTheme.blue};
+    background-color:${(props) => props.theme.blue};
     width: 6px;
     height: 6px;
     border-radius:50%;
-`
-export const Icon = styled(SVG)`
-    width:20px;
-    height:20px;
-
-    fill:red;
 `
 
 export const LogoutBtn = styled.button`
@@ -95,4 +94,8 @@ export const LogoutBtn = styled.button`
     bottom: 61px;
     left:39px;
     cursor:pointer;
+
+    .img{
+        fill:${(props) => props.theme.fontColor};
+    }
 `

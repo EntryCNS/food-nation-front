@@ -10,20 +10,10 @@ import CheckMenu from "../../assets/image/navBar/checkMenu.svg";
 import Ranking from "../../assets/image/navBar/ranking.svg";
 import Review from "../../assets/image/navBar/review.svg";
 import Logout from "../../assets/image/navBar/logout.svg";
-import useMoveIndiccator from "util/hooks/useMoveIndiccator";
+import useNavBar from "util/hooks/useNavBar";
 
-const NavBar: React.FC = (): any => {
-  const [selected, setSelected] = useState(false);
-
-  const navBarStatus = {
-    hoem: true,
-    profile: false,
-    addMenu: false,
-    checkMenu: false,
-    ranking: false,
-    review: false,
-  };
-
+const NavBar: React.FC = () => {
+  const { positionTop, selectedNavBarElement } = useNavBar();
   return (
     <>
       <N.Wrapper>
@@ -35,56 +25,56 @@ const NavBar: React.FC = (): any => {
           <ul>
             <li>
               <Link href="/">
-                <a>
-                  <Home className="img" fill={"#000"} />
-                </a>
+                <N.IMG selected={selectedNavBarElement.home}>
+                  <Home className="img" />
+                </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="/profile">
-                <a>
-                  <Profile className="img" fill={"#fff"} />
-                </a>
+                <N.IMG selected={selectedNavBarElement.profile}>
+                  <Profile className="img" />
+                </N.IMG>
+              </Link>
+            </li>
+            <li>
+              <Link href="/addMenu">
+                <N.IMG selected={selectedNavBarElement.addMenu}>
+                  <AddMenu className="img" />
+                </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <a>
-                  <AddMenu className="img" fill={"#fff"} />
-                </a>
+                <N.IMG selected={selectedNavBarElement.checkMenu}>
+                  <CheckMenu className="img" />
+                </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <a>
-                  <CheckMenu className="img" fill={`kj`} />
-                </a>
+                <N.IMG selected={selectedNavBarElement.ranking}>
+                  <Ranking className="img" />
+                </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <a>
-                  <Ranking className="img" fill={"#000"} />
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <a>
-                  <Review className="img" fill={"#000"} />
-                </a>
+                <N.IMG selected={selectedNavBarElement.review}>
+                  <Review className="img" />
+                </N.IMG>
               </Link>
             </li>
           </ul>
 
-          <N.Indicator top={useMoveIndiccator()}>
+          <N.Indicator top={positionTop}>
             <N.BoxIndicator />
             <N.DotIndicator />
           </N.Indicator>
         </N.Navigate>
 
         <N.LogoutBtn>
-          <Logout />
+          <Logout className="img" />
         </N.LogoutBtn>
       </N.Wrapper>
     </>
