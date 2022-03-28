@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
       }
       div{
         background-color:${(props) => props.theme.background};
+        
       }
       #__next{
         background-color:${(props) => props.theme.htmlBackground};
