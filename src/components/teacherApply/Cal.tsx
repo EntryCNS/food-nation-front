@@ -8,31 +8,19 @@ import Image from "next/image";
 
 export default function Calendar() {
   let today = new Date();
-  // let year = today.getFullYear(); // 년도
-  // let month = today.getMonth() + 1;  // 월
-  // let date = today.getDate();  // 날짜
-  // // 0 = 일 1 = 월...
-  // let day = today.getDay();  // 요일`
 
   const [year, setYear] = useState(today.getFullYear());
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [date, setDate] = useState(today.getDate());
   const [day, setDay] = useState(today.getDay());
 
-  // 이번달 첫날의
   let test = new Date(year, month - 1, 1);
-  // console.log(test.getDate())
-  // console.log(test.getDay())
 
   // 이번달 마지막날
   let test1 = new Date(year, month, 0);
-  // console.log(test1.getDate())
-  // console.log(test1.getDay())
 
   // 지난달 마지막날
   let test2 = new Date(year, month - 1, 0);
-  // console.log(test2.getDate())
-  // console.log(test2.getDay())
 
   let dayArray: number[] = [];
 
@@ -84,6 +72,8 @@ export default function Calendar() {
     "December",
   ];
 
+  console.log(dayArray);
+
   return (
     <Cal.CalendarContainer>
       <nav>
@@ -108,6 +98,7 @@ export default function Calendar() {
               key={idx}
               visable={colorArray[idx]}
               selected={date == day && checkNum - 1 < idx ? 1 : 0}
+              onClick={() => setDate(day)}
             >
               {" "}
               {day}
