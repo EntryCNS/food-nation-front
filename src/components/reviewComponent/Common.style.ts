@@ -1,13 +1,17 @@
-import styled from "styled-components";
+import styled,{css} from "styled-components";
 
 export const ButtonsContainer = styled.div`
     width:192px;
     display:flex;
     flex-flow:row nowrap;
     justify-content:space-between;
-    `
+`
 
-export const Button = styled.div`
+interface ButtonType{
+  selected?:boolean
+}
+
+export const Button = styled.div<ButtonType>`
   cursor:pointer;
   border-radius:15px;
   box-shadow:4px 4px 15px 0px rgba(0,0,0,0.1);
@@ -18,6 +22,8 @@ export const Button = styled.div`
   display:flex;
   justify-content:center;
   align-items:center;
+  color:${(props) => (props.selected ? "white" : "#636363")};
+  background-color:${(props) => (props.selected ? "#1556F7" : "white")};
 `
 
 export const FitContainer = styled.div`
