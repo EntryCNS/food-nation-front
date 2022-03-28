@@ -22,12 +22,13 @@
     "paths": {
       "components":["components/*"],
       "pages":["/pags"],
-      "containers":["/containers/*"],
       "stores":["/stroes/*"],
       "styles":["/styles/*"],
       "assets":["/assets/*"],
       "util":["/util/*"],
-      "interface":["/interface/*"]
+      "interface":["/interface/*"],
+      "hooks":["/hooks/*"]
+
     }
   },
   "include": [

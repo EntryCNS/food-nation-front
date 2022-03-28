@@ -10,7 +10,7 @@ import CheckMenu from "../../assets/image/navBar/checkMenu.svg";
 import Ranking from "../../assets/image/navBar/ranking.svg";
 import Review from "../../assets/image/navBar/review.svg";
 import Logout from "../../assets/image/navBar/logout.svg";
-import useNavBar from "util/hooks/useNavBar";
+import useNavBar from "hooks/useNavBar";
 
 const NavBar: React.FC = () => {
   const { positionTop, selectedNavBarElement } = useNavBar();
