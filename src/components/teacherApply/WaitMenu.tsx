@@ -1,227 +1,14 @@
 import React, { useCallback, useState } from "react";
-import styled from "styled-components";
-import { lightTheme } from "styles/theme";
 import data from "./data.json";
-import heart from "assets/image/heart.svg";
-
-const Container = styled.div`
-  width: 970px;
-  height: 738px;
-  background: ${lightTheme.background};
-  box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 15px;
-  position: relative;
-  .title {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 19px;
-    color: ${lightTheme.darkGray};
-    padding-top: 40px;
-    margin-left: 40px;
-    padding-bottom: 40px;
-  }
-  .innerContainer {
-    width: 920px;
-    height: 599px;
-    padding-left: 15px;
-    padding-bottom: 36px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    overflow-y: scroll;
-    position: relative;
-    /* padding-right: 38px; */
-  }
-  .eachContainer {
-    width: 198px;
-    height: 162px;
-    margin-bottom: 30px;
-    margin-right: 20px;
-    background: ${lightTheme.background};
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-  }
-  .menuTitle {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
-    margin-top: 24px;
-    margin-left: 16px;
-  }
-  .menuDes {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 13px;
-    letter-spacing: 0.02em;
-    width: 166px;
-    height: 39px;
-    margin: 0 auto;
-    margin-top: 8px;
-  }
-  nav {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    color: #939393;
-  }
-  nav p {
-    color: #939393;
-  }
-  .navContainer {
-    display: flex;
-    margin-left: 16px;
-    margin-top: 24px;
-    width: 166px;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .navContainer div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .heart {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 8px;
-    line-height: 9px;
-    margin-right: 4px;
-  }
-  .apply {
-    display: flex;
-    margin-left: 16px;
-    margin-top: 10px;
-    width: 166px;
-    justify-content: flex-end;
-    align-items: center;
-  }
-  .approve {
-    width: 50px;
-    height: 22px;
-    background: #ffffff;
-    border: 1px solid #1556f7;
-    box-sizing: border-box;
-    border-radius: 15px;
-    color: #1555f7;
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    transition: 0.2s;
-    cursor: pointer;
-    margin-left: 8px;
-  }
-  .approve:hover {
-    background: #1555f7;
-    border: 1px solid #fff;
-    transition: 0.2s;
-    color: #fff;
-  }
-  .closed {
-    width: 50px;
-    background: #ffffff;
-    border: 1px solid #fe8885;
-    box-sizing: border-box;
-    border-radius: 15px;
-    height: 22px;
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    cursor: pointer;
-    color: #fe8885;
-  }
-  .closed:hover {
-    background: #fe8885;
-    border: 1px solid #fff;
-    transition: 0.2s;
-    color: #fff;
-  }
-  .innerContainer::-webkit-scrollbar {
-    width: 15px;
-  }
-
-  .innerContainer::-webkit-scrollbar-thumb {
-    height: 17%;
-    background: #e4e4e4;
-    border-radius: 15px;
-  }
-
-  /* 스크롤바 뒷 배경 설정*/
-  .innerContainer::-webkit-scrollbar-track {
-    background: #f4f4f4;
-    border-radius: 15px;
-  }
-  .not {
-    width: 100%;
-    height: 100%;
-    background: none;
-    position: absolute;
-    top: -100%;
-    transition: background 0.3s;
-  }
-  .active {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.15);
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background 0.3s;
-  }
-  .alert {
-    background: #ffffff;
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 15px;
-    width: 256px;
-    height: 55px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s;
-  }
-
-  .alert label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .alert label p {
-    font-family: "Roboto";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 16px;
-    color: #636363;
-  }
-  .alert label button {
-    margin-left: 21px;
-    width: 59px;
-    height: 28px;
-    background: #ffffff;
-    border: 1px solid #434343;
-    box-sizing: border-box;
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-  }
-`;
+import {
+  ApplyContainer,
+  Container,
+} from "components/teacherApply/WaitMenuStyle";
+import Calendar from "components/teacherApply/Cal";
 
 const WaitMenu = () => {
   const [visiable, setVisiable] = useState(false);
+  const [visiable2, setVisiable2] = useState(null);
   const closed = useCallback(() => {
     setVisiable(!visiable);
   }, [visiable]);
@@ -229,7 +16,7 @@ const WaitMenu = () => {
     <Container>
       <h2 className="title">대기 목록</h2>
       <div className="innerContainer">
-        {data.map((i) => (
+        {data.map((i, j) => (
           <div className="eachContainer">
             <div className="menuTitle">{i.name}</div>
             <p className="menuDes">{i.des}</p>
@@ -259,11 +46,24 @@ const WaitMenu = () => {
               <button className="closed" onClick={closed}>
                 거절
               </button>
-              <button className="approve">수락</button>
+              <button className="approve" onClick={() => setVisiable2(j)}>
+                수락
+              </button>
             </div>
           </div>
         ))}
       </div>
+      {visiable2 !== null ? (
+        <div className="not active">
+          <ApplyContainer>
+            <div className="menuCheck">{data[visiable2].name}</div>
+            <Calendar />
+            <button onClick={() => setVisiable2(null)}>수락하기</button>
+          </ApplyContainer>
+        </div>
+      ) : (
+        <div className="not"></div>
+      )}
       {visiable ? (
         <div className="not active">
           <div className="alert">
