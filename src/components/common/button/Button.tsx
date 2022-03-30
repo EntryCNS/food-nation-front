@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import IButton from "interface/common/button/IButton";
 import * as Btn from "./Button.style";
 
-const Button: React.FC<IButton> = ({ visible, children, width }) => {
+const Button: React.FC<IButton> = ({ visible, width, children }: IButton) => {
   return (
     <Btn.Button visible={visible} width={width}>
       {children}
