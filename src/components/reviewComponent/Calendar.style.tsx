@@ -64,8 +64,8 @@ export const Calendar = styled.div`
 `
 
 interface DayType {
-    visable?:number;
-    selected?:number;
+    visable?:boolean;
+    selected?:boolean;
 }
 
 export const Day = styled.div<DayType>`
@@ -82,7 +82,7 @@ export const Day = styled.div<DayType>`
     font-weight: 400;
 
     border-radius:100%;    
-    color:${(props) => (props.visable?"black":"#939393")};
+    color:${(props) => (props.visable?"black":"#CACACA")};
     ${(props) => (props.selected?css`
     background-color:#1556F7;
     color:white;

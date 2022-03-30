@@ -174,3 +174,8 @@ export const Button = styled.button`
     box-shadow:4px 4px 15px 0px rgba(0,0,0,0.1);
     cursor:pointer;
 `
+
+export const ReviewError = styled.div`
+    font-size:13px;
+    /* color:#982911; */
+`
