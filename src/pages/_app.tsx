@@ -13,8 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <NavBar />
       <Component {...pageProps} />
-
-      <Component {...pageProps} />
       <ProfileBar />
     </ThemeProvider>
   );
