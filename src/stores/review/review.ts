@@ -5,4 +5,9 @@ const calendarDate = atom({
     key:"calendarDate",
     default:0
 })
-export {calendarDate}
+
+const calendarMonth = atom({
+    key:"calendarMonth",
+    default:0
+})
+export {calendarDate,calendarMonth}

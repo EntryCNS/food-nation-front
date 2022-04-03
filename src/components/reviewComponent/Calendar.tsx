@@ -6,16 +6,19 @@ import Image from "next/image";
 import leftArrow from "assets/image/review/leftArrow.svg";
 import rightArrow from "assets/image/review/rightArrow.svg";
 
-// import { useRecoilState, useRecoilValue } from "recoil";
-// import { calendarDate, calendarMonth } from "stores/review/review";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { calendarDate, calendarMonth } from "stores/review/review";
 
 export default function Calendar() {
   let today = new Date();
 
-  const [year, setYear] = useState(today.getFullYear());
-  const [month, setMonth] = useState(today.getMonth() + 1);
-  const [date, setDate] = useState(today.getDate());
-  const [day, setDay] = useState(today.getDay());
+  // const [year, setYear] = useState(today.getFullYear());
+  // const [month, setMonth] = useState(today.getMonth() + 1);
+  // const [date, setDate] = useState(today.getDate());
+  // const [day, setDay] = useState(today.getDay());
+
+  // const [year,setYear] = useRecoilState(today.getFullYear());
+
 
   // 이번달 첫날의
   let test: Date = new Date(year, month - 1, 1);
