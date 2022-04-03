@@ -1,6 +1,7 @@
+import { useState,useEffect } from "react";
+
 import Image from "next/image";
 
-import { useState,useEffect } from "react";
 import * as R from "./ReadReview.style";
 import * as C from "./Common.style"
 
@@ -16,7 +17,7 @@ export default function ReadReview() {
     comment:string;
   }
 
-  // 아침점심저녁 중 선택된 버튼
+  // 아침점심저 녁 중 선택된 버튼
   const [selectedButton, setSelectedButton] = useState(-1);
   // 버튼 map출력 배열
   const timeArray = ["아침", "점심", "저녁"];
@@ -135,11 +136,6 @@ export default function ReadReview() {
         {reviews?.map((review: ReviewType) => (
           <R.CommentContainer key={review.id}>
             <R.StarContainer>
-              {/* <Image src={fullStar} />
-              <Image src={fullStar} />
-              <Image src={fullStar} />
-              <Image src={fullStar} />
-              <Image src={emptyStar} /> */}
               {
                 makeStarArray(review.stars).map((star,idx) => (
                   <Image key={idx} src={star?fullStar:emptyStar}/>
@@ -158,46 +154,3 @@ export default function ReadReview() {
   );
 }
 
-
-// // import * as C from "";
-
-
-// export default function Button() {
-//   const [selectedButton, setSelectedButton] = useState(-1);
-//   const timeArray = ["아침", "점심", "저녁"];
-//   function buttonClick(idx: number): void {
-//     setSelectedButton(idx);
-//     console.log(selectedButton);
-//   }
-
-//   // 버튼의 기본 선택이 현제 시간에 따라 변경,
-//   // 계속 리렌더링이 고민
-//   useEffect(() => {
-//     const today = new Date();
-//     const time = today.getHours() * 100 + today.getMinutes();
-//     console.log(time);
-//     if (time > 710 && time < 1230) {
-//       setSelectedButton(0);
-//     } else if (time > 1230 && time < 1920) {
-//       setSelectedButton(1);
-//     } else {
-//       setSelectedButton(2);
-//     }
-//   }, []);
-//   return (
-//     <C.ButtonsContainer>
-//       {/* <C.Button>아침</C.Button>
-//           <C.Button>점심</C.Button>
-//           <C.Button>저녁</C.Button> */}
-//       {timeArray.map((time, idx) => (
-//         <C.Button
-//           key={idx}
-//           onClick={() => buttonClick(idx)}
-//           selected={idx == selectedButton ? true : false}
-//         >
-//           {time}
-//         </C.Button>
-//       ))}
-//     </C.ButtonsContainer>
-//   );
-// }

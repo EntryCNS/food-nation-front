@@ -7,7 +7,7 @@ import leftArrow from "assets/image/review/leftArrow.svg";
 import rightArrow from "assets/image/review/rightArrow.svg";
 
 import { useRecoilState, useRecoilValue } from "recoil";
-import { calendarDate, calendarMonth } from "stores/review/review";
+import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review/calednar";
 
 export default function Calendar() {
   let today = new Date();
@@ -17,8 +17,14 @@ export default function Calendar() {
   // const [date, setDate] = useState(today.getDate());
   // const [day, setDay] = useState(today.getDay());
 
-  // const [year,setYear] = useRecoilState(today.getFullYear());
+  const [year,setYear] = useRecoilState(calendarYear)
+  const [month,setMonth] = useRecoilState(calendarMonth)
+  const [date,setDate] = useRecoilState(calendarDate)
+  const [day,setDay] = useRecoilState(calendarDay)
 
+  useEffect(() => {
+    requestData(month, date);
+  }, []);
 
   // 이번달 첫날의
   let test: Date = new Date(year, month - 1, 1);
@@ -61,10 +67,8 @@ export default function Calendar() {
   // 선택된 날짜(idx), 초기값은 선택되지 않았기 때문에 0
   const [selected, setSelected] = useState(-1);
 
-  // //
-  useEffect(() => {
-    requestData(month, date);
-  }, []);
+  
+  
   // 서버통신
   // 날짜를 선택했을 때만 recoil이 사용됨
 
