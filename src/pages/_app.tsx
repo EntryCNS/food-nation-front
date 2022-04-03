@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
       <ThemeProvider theme={lightTheme}>
-        <GlobalStyle />=
+        <GlobalStyle />
         <Layout>
           <Component {...pageProps} />
         </Layout>
