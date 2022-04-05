@@ -1,4 +1,4 @@
-import WaitMenu from "components/teacherApply/WaitMenu";
+import WaitMenu from "components/Admin/teacherApply/WaitMenu";
 import React from "react";
 
 const teacher = () => {

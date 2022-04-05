@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import * as Cal from "components/teacherApply/Calendar";
+import * as Cal from "components/Admin/teacherApply/Calendar";
 import Image from "next/image";
 
 // import leftArrow from "assets/image/review/leftArrow.svg";
@@ -71,8 +71,6 @@ export default function Calendar() {
     "November",
     "December",
   ];
-
-  console.log(dayArray);
 
   return (
     <Cal.CalendarContainer>

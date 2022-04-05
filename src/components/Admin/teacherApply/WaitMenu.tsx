@@ -3,8 +3,8 @@ import data from "./data.json";
 import {
   ApplyContainer,
   Container,
-} from "components/teacherApply/WaitMenuStyle";
-import Calendar from "components/teacherApply/Cal";
+} from "components/Admin/teacherApply/WaitMenuStyle";
+import Calendar from "components/Admin/teacherApply/Calendar";
 
 const WaitMenu = () => {
   const [visiable, setVisiable] = useState(false);

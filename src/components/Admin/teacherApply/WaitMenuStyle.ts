@@ -52,7 +52,7 @@ export const Container = styled.div`
   background: ${lightTheme.background};
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
-  position: relative;
+  /* position: relative; */
   .title {
     font-family: "Roboto";
     font-style: normal;
@@ -211,13 +211,16 @@ export const Container = styled.div`
     height: 100%;
     background: none;
     position: absolute;
+    z-index: 100;
     top: -100%;
+    left: 0;
     transition: background 0.3s;
   }
   .active {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.15);
+    z-index: 100;
     position: absolute;
     top: 0;
     display: flex;
@@ -231,6 +234,7 @@ export const Container = styled.div`
     border-radius: 15px;
     width: 256px;
     height: 55px;
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
