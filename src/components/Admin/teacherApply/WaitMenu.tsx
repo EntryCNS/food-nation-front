@@ -4,7 +4,7 @@ import {
   ApplyContainer,
   Container,
 } from "components/Admin/teacherApply/WaitMenuStyle";
-import Calendar from "components/Admin/teacherApply/Calendar";
+import Calendar from "components/Admin/teacherApply/Cal";
 
 const WaitMenu = () => {
   const [visiable, setVisiable] = useState(false);
@@ -17,7 +17,7 @@ const WaitMenu = () => {
       <h2 className="title">대기 목록</h2>
       <div className="innerContainer">
         {data.map((i, j) => (
-          <div className="eachContainer">
+          <div className="eachContainer" key={j}>
             <div className="menuTitle">{i.name}</div>
             <p className="menuDes">{i.des}</p>
             <div className="navContainer">
