@@ -53,7 +53,8 @@ export const NavContainer = styled.div`
     padding-right:24px;
     
     position:fixed;
-    background-color:white;
+    /* background-color:rgba(0,0,0,0); */
+    
     
     display:flex;
     flex-flow:row nowrap;
@@ -67,7 +68,7 @@ export const NavContainer = styled.div`
         div{
             font-weight:600;
             color:#434343;
-            /* font-weight:bold; */
+            
         }
         div:nth-child(1){
             margin-right:17px;
@@ -90,8 +91,6 @@ export const NavContainer = styled.div`
         }
     }
 `
-
-
 
 // 간격 뛰우기
 export const Temp = styled.div`

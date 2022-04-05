@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 
 import * as C from "./Common.style"
 import * as W from "./WriteReview.style";
-import Image from "next/image";
 
-import leftArrow from "assets/image/review/leftArrow.svg";
-import rightArrow from "assets/image/review/rightArrow.svg";
-import emptyStar from "assets/image/review/writeEmptyStar.svg";
-import fullStar from "assets/image/review/writeFullStar.svg";
+// import leftArrow from "../../assets/image/review/leftArrow.svg";
+// import rightArrow from "../../assets/image/review/rightArrow.svg";
+// import emptyStar from "../../assets/image/review/writeEmptyStar.svg";
+// import fullStar from "../../assets/image/review/writeFullStar.svg";
 
 import Calendar from "components/reviewComponent/Calendar";
 
@@ -93,9 +92,9 @@ export default function WriteReview() {
             <Image src={emptyStar}/>
             <Image src={emptyStar}/>
             <Image src={emptyStar}/> */}
-          {stars.map((star, idx) => (
+          {/* {stars.map((star, idx) => (
             <Image src={star ? fullStar : emptyStar} key={idx} onClick={()=>paintStar(idx)}/>
-          ))}
+          ))} */}
         </W.StarContainer>
         <W.CommentInputContainer>
           <W.CommentInput 

@@ -1,16 +1,25 @@
 import { useState,useEffect } from "react";
 
-import Image from "next/image";
-
 import * as R from "./ReadReview.style";
 import * as C from "./Common.style"
+import LeftArrow from"../../assets/image/review/leftArrow.svg"
+import RightArrow from "../../assets/image/review/rightArrow.svg";
+import EmptyStar from "../../assets/image/review/readEmptyStar.svg";
+import FullStar from "../../assets/image/review/readFullStar.svg";
 
-import leftArrow from "assets/image/review/leftArrow.svg";
-import rightArrow from "assets/image/review/rightArrow.svg";
-import emptyStar from "assets/image/review/readEmptyStar.svg";
-import fullStar from "assets/image/review/readFullStar.svg";
+import {useRecoilState} from "recoil";
+import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review/calednar";
+
+
+// 달 넘길 때 년, 월, 일, 요일 바꿔주기
 
 export default function ReadReview() {
+
+  const [year,setYear] = useRecoilState(calendarYear)
+  const [month,setMonth] = useRecoilState(calendarMonth)
+  const [date,setDate] = useRecoilState(calendarDate)
+  const [day,setDay] = useRecoilState(calendarDay)
+
   interface ReviewType {
     id: number;
     stars:number;
@@ -99,22 +108,45 @@ export default function ReadReview() {
     return starArray
   }
 
+  const dayArray = ['일','월','화','수','목','금','토'];
+
+  // recoil값에서 일/요일/월/년까지 변경
+  function previousDate(): void {
+    // 달이 넘어갈 때
+    if (date-1 < 1){
+      // 년이 넘어갈 때
+      if (month - 1 < 1) {
+        setYear(year - 1)
+        setMonth(12)
+      } else {
+
+      }
+
+    } else {
+      // setDate(Date)
+    }
+  }
+  // 다음달
+  function nextDate(): void {
+
+  }
+
   return (
     <R.Container>
       <R.InnerContainer>
         <R.NavContainer>
           <nav>
-            <div>
-              <Image src={leftArrow} />
+            <div onClick={previousDate}>
+              <LeftArrow/>
             </div>
-            <div>0000</div>
+            <div>{year}</div>
             <div>.</div>
-            <div>00</div>
+            <div>{month}</div>
             <div>.</div>
-            <div>00</div>
-            <div>(일)</div>
-            <div>
-              <Image src={rightArrow} />
+            <div>{date}</div>
+            <div>({dayArray[day]})</div>
+            <div onClick={nextDate}>
+              <RightArrow/>
             </div>
           </nav>
           <C.ButtonsContainer>
@@ -137,9 +169,12 @@ export default function ReadReview() {
           <R.CommentContainer key={review.id}>
             <R.StarContainer>
               {
-                makeStarArray(review.stars).map((star,idx) => (
-                  <Image key={idx} src={star?fullStar:emptyStar}/>
-                ))
+                // makeStarArray(review.stars).map((star,idx) => (
+                  
+                // ))
+                makeStarArray(review.stars).map((star,idx) => {
+                  star ? <FullStar/> : <EmptyStar/>
+                })
               }
             </R.StarContainer>
             <R.Comment>
