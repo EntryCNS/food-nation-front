@@ -5,12 +5,14 @@ const GlobalStyle = createGlobalStyle`
       ${reset}
       * {
         box-sizing: border-box;
+        color:${(props) => props.theme.title};
       }
       html{
         height:100%;
       }
       div{
         background-color:${(props) => props.theme.background};
+        
       }
       #__next{
         background-color:${(props) => props.theme.htmlBackground};

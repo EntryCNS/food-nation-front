@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { lightTheme } from "styles/theme";
 
 export const ListContainer = styled.div`
-  @media screen and (min-width: 1500px) {
+  @media screen and (min-width: 1300px) {
     width: 600px;
     height: 738px;
     position: relative;

@@ -1,5 +1,5 @@
 export const lightTheme = {
-  title: "#434343",
+  fontColor: "#434343",
   description: "#646464",
   htmlBackground: "#fff",
   background: "#fff",
@@ -10,7 +10,7 @@ export const lightTheme = {
   gradient: "linear-gradient(#6DB2F4, #FCFFB8)",
 };
 export const darkTheme = {
-  title: "#FFFFFF",
+  fontColor: "#FFFFFF",
   description: "#FFFFFF",
   htmlBackground: "#1E1F21",
   background: "#292A2D",
