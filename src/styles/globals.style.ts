@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
       ${reset}
       * {
         box-sizing: border-box;
-        color:${(props) => props.theme.title};
+        color:${(props) => props.theme.fontColor};
       }
       html{
         height:100%;
@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle`
       }
       h1, h2, h3, h4, h5, h6{
         font-family:'Maven Pro', sans-serif;
-        color:${(props) => props.theme.title}
+        color:${(props) => props.theme.fontColor};
       }
       p{
         color:${(props) => props.theme.description}

@@ -7,11 +7,11 @@ interface styleProps {
 }
 
 export const Wrapper = styled.div`
-    position:relative;
+    position:sticky;
+    top:0px;
     width: 100px;
     height: 100vh;
     display:flex;
-    margin-right:auto;
     border-right: 1px solid #F4F4F4;
     flex-direction:column;
     display:flex;
@@ -54,9 +54,9 @@ export const Navigate = styled.div`
     
 `
 export const IMG = styled.a<styleProps>`
-    .img{
-        transition:2s;
-        path{
+.img{
+    path{
+            transition:0.5s;
             fill:${(props) => props.theme.fontColor};
            ${(props) => props.selected && css`fill:#fff`};
             

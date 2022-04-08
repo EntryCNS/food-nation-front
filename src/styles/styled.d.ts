@@ -10,6 +10,7 @@ declare module "styled-components" {
         skyBlue: string,
         darkGray: string,
         gray: string,
-        gradient: string
+        gradient: string,
+        subGradient: string
     }
 }
