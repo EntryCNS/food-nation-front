@@ -55,7 +55,6 @@ export const NavContainer = styled.div`
     position:fixed;
     /* background-color:rgba(0,0,0,0); */
     
-    
     display:flex;
     flex-flow:row nowrap;
     justify-content:space-between;

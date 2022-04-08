@@ -9,9 +9,15 @@ import FullStar from "../../assets/image/review/readFullStar.svg";
 
 import {useRecoilState} from "recoil";
 import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review/calednar";
-
+import { BlobOptions } from "buffer";
+import Review from "pages/review";
 
 // 달 넘길 때 년, 월, 일, 요일 바꿔주기
+
+// 아침, 점심, 저녁 버튼 read랑 write시간 맞춰주기
+
+// 리뷰의 별들을 출력하는 과정
+// 이 페이지에 들어오면 더미데이터를 돌려서 한 배열에 미리 만들기 with useEffect
 
 export default function ReadReview() {
 
@@ -20,40 +26,16 @@ export default function ReadReview() {
   const [date,setDate] = useRecoilState(calendarDate)
   const [day,setDay] = useRecoilState(calendarDay)
 
-  interface ReviewType {
-    id: number;
-    stars:number;
-    comment:string;
-  }
-
-  // 아침점심저 녁 중 선택된 버튼
-  const [selectedButton, setSelectedButton] = useState(-1);
-  // 버튼 map출력 배열
-  const timeArray = ["아침", "점심", "저녁"];
-  // 아침점심저녁 중 선택된 값에 따른 서버요청
-  function buttonClick(idx: number): void {
-    console.log(idx,"의 서버값")
-    setSelectedButton(idx);
-  }
-
-  // 버튼의 초기값이 현제 시간에 따라 변경,
-  // (각각의 급식시간이 지난 후)
   useEffect(() => {
-    const today = new Date();
-    const time = today.getHours() * 100 + today.getMinutes();
-    if (time > 710 && time < 1230) {
-      console.log(0,"의 서버값")
-      setSelectedButton(0);
-    } else if (time > 1230 && time < 1820) {
-      console.log(1,"의 서버값")
-      setSelectedButton(1);
-    } else {
-      console.log(2,"의 서버값")
-      setSelectedButton(2);
+    if (year > 0 && month > 0 && date > 0){
+      requestData(month,date);
     }
-  }, []);
+  },[year,month,date,day])
+  function requestData(month: number, idx: number) {
+    console.log("서버통신-리뷰가져오기", month, idx);
+  }
 
-  // 더미데이터
+
   const [reviews, setReviews] = useState([
     {
       id: 1,
@@ -96,18 +78,53 @@ export default function ReadReview() {
       comment: "맛있어요",
     },
   ]);
+  interface ReviewType {
+    id: number;
+    stars:number;
+    comment:string;
+  }
 
-  function makeStarArray(starNum:number){
-    let starArray = []
+  // 아침점심저 녁 중 선택된 버튼
+  const [selectedButton, setSelectedButton] = useState(-1);
+  // 버튼 map출력 배열
+  const timeArray = ["아침", "점심", "저녁"];
+  // 아침점심저녁 중 선택된 값에 따른 서버요청
+  function buttonClick(idx: number): void {
+    console.log(idx,"의 서버값")
+    setSelectedButton(idx);
+  }
+
+  // 버튼의 초기값이 현제 시간에 따라 변경,
+  // (각각의 급식시간이 지난 후)
+  useEffect(() => {
+    const today = new Date();
+    const time = today.getHours() * 100 + today.getMinutes();
+    if (time > 710 && time < 1230) {
+      console.log(0,"의 서버값")
+      setSelectedButton(0);
+    } else if (time > 1230 && time < 1820) {
+      console.log(1,"의 서버값")
+      setSelectedButton(1);
+    } else {  
+      console.log(2,"의 서버값")
+      setSelectedButton(2);
+    }
+  }, []);
+
+  // 더미데이터
+  
+  function makeStarArray(starNum:number):boolean[]{
+    let starArray = [];
     for(let i = 0;i<starNum;i++){
       starArray.push(true)
     }
     for(let i = 0;i<5-starNum;i++){
       starArray.push(false)
     }
+    console.log(starArray)
     return starArray
   }
-
+  
   const dayArray = ['일','월','화','수','목','금','토'];
 
   // recoil값에서 일/요일/월/년까지 변경
@@ -131,6 +148,8 @@ export default function ReadReview() {
 
   }
 
+
+  
   return (
     <R.Container>
       <R.InnerContainer>
@@ -141,18 +160,15 @@ export default function ReadReview() {
             </div>
             <div>{year}</div>
             <div>.</div>
-            <div>{month}</div>
+            <div>{month < 10 ? "0"+month : month}</div>
             <div>.</div>
-            <div>{date}</div>
+            <div>{date < 10 ? "0"+date : date}</div>
             <div>({dayArray[day]})</div>
             <div onClick={nextDate}>
               <RightArrow/>
             </div>
           </nav>
           <C.ButtonsContainer>
-          {/* <C.Button>아침</C.Button>
-          <C.Button>점심</C.Button>
-          <C.Button>저녁</C.Button> */}
           {timeArray.map((time, idx) => (
             <C.Button
               key={idx}
@@ -168,14 +184,16 @@ export default function ReadReview() {
         {reviews?.map((review: ReviewType) => (
           <R.CommentContainer key={review.id}>
             <R.StarContainer>
-              {
-                // makeStarArray(review.stars).map((star,idx) => (
-                  
-                // ))
-                makeStarArray(review.stars).map((star,idx) => {
-                  star ? <FullStar/> : <EmptyStar/>
+              {/* {
+                makeStarArray(review.stars).map((isFull) => {
+                  isFull ? (<FullStar/>) : (<EmptyStar/>)
                 })
-              }
+              } */}
+              <FullStar/>
+              {review.stars > 1 ? <FullStar/> : <EmptyStar/>}
+              {review.stars > 2 ? <FullStar/> : <EmptyStar/>}
+              {review.stars > 3 ? <FullStar/> : <EmptyStar/>}
+              {review.stars > 4 ? <FullStar/> : <EmptyStar/>}
             </R.StarContainer>
             <R.Comment>
               {

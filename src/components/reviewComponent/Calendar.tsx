@@ -27,12 +27,12 @@ export default function Calendar() {
   const [day,setDay] = useRecoilState(calendarDay)
 
   useEffect(() => {
-    setYear(today.getFullYear());
-    setMonth(today.getMonth()+1);
-    setDate(today.getDate())
-    setDay(today.getDay())
-
-    requestData(today.getMonth(), today.getDate());
+    // setYear(today.getFullYear());
+    // setMonth(today.getMonth()+1);
+    // setDate(today.getDate())
+    // setDay(today.getDay())
+    setting()
+    requestData(today.getMonth()+1, today.getDate());
   }, []);
 
   function setting(){
@@ -88,7 +88,7 @@ export default function Calendar() {
 
   // const [globalDate, setGlobalDate] = useRecoilState(calendarDate);
   function requestData(month: number, idx: number) {
-    console.log("서버통신", month, idx);
+    console.log("서버통신-리뷰쓰기", month, idx);
   }
 
   // recoil값에서 년/달 만 변경
