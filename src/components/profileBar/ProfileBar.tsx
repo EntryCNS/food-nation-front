@@ -5,8 +5,9 @@ import Custom3 from "assets/image/profileCustom3.png";
 import Custom4 from "assets/image/profileCustom4.png";
 import Custom2 from "assets/image/profileImage.png";
 import Image from "next/image";
-
+import { useSession } from "next-auth/react";
 const ProfileBar = () => {
+  const { data: session } = useSession();
   return (
     <ProfileBarContainer>
       <div className="custom1">
@@ -16,7 +17,7 @@ const ProfileBar = () => {
         <div className="drop">
           <Image src={Custom2} width={130} height={130} />
         </div>
-        <h2>강성훈</h2>
+        <h2>{session?.user?.name}</h2>
         <p>학생</p>
       </div>
       <div className="custom3">

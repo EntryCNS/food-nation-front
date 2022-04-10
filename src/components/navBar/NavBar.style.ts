@@ -88,13 +88,13 @@ export const DotIndicator = styled.div`
     border-radius:50%;
 `
 
-export const LogoutBtn = styled.button`
+export const Auth = styled.div`
     position:absolute;
     bottom: 61px;
     left:39px;
     cursor:pointer;
 
-    .img{
+    >img{
         fill:${(props) => props.theme.fontColor};
     }
 `

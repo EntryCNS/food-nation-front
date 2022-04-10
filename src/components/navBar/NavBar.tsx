@@ -9,8 +9,8 @@ import AddMenu from "../../assets/image/navBar/addMenu.svg";
 import CheckMenu from "../../assets/image/navBar/checkMenu.svg";
 import Ranking from "../../assets/image/navBar/ranking.svg";
 import Review from "../../assets/image/navBar/review.svg";
-import Logout from "../../assets/image/navBar/logout.svg";
 import useNavBar from "hooks/useNavBar";
+import AuthBtn from "./AuthBtn";
 
 const NavBar: React.FC = () => {
   const { positionTop, selectedNavBarElement } = useNavBar();
@@ -73,9 +73,9 @@ const NavBar: React.FC = () => {
           </N.Indicator>
         </N.Navigate>
 
-        <N.LogoutBtn>
-          <Logout className="img" />
-        </N.LogoutBtn>
+        <N.Auth>
+          <AuthBtn />
+        </N.Auth>
       </N.Wrapper>
     </>
   );
