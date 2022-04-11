@@ -112,7 +112,11 @@ export const Day = styled.div<DayType>`
     
 `
 
-export const StarContainer = styled.div`
+interface StarType {
+    isPainted?:boolean;
+}
+
+export const StarContainer = styled.div<StarType>`
     display:flex;
     justify-content:space-between;
     width:210px;
@@ -120,8 +124,19 @@ export const StarContainer = styled.div`
     user-select:none;
     *{
         cursor:pointer;
+        
     }
+    
+    .full{
+        fill:#EFB305;
+    }
+    .empty{
+        fill:white;
+    }
+    
 `
+
+
 
 export const CommentInputContainer = styled.div`
     border:1px solid #E4E4E4;

@@ -5,8 +5,9 @@ import * as W from "./WriteReview.style";
 
 // import leftArrow from "../../assets/image/review/leftArrow.svg";
 // import rightArrow from "../../assets/image/review/rightArrow.svg";
-// import emptyStar from "../../assets/image/review/writeEmptyStar.svg";
+// import EmptyStar from "../../assets/image/review/writeEmptyStar.svg";
 // import fullStar from "../../assets/image/review/writeFullStar.svg";
+import Star from "../../assets/image/review/writeStar.svg"
 
 import Calendar from "components/reviewComponent/Calendar";
 
@@ -14,7 +15,6 @@ import Calendar from "components/reviewComponent/Calendar";
 export default function WriteReview() {
   // 별
   const [stars,setStars] = useState([0,0,0,0,0])
-  const [starNum,setStarNum] = useState(-1)
   
   const [selectedButton, setSelectedButton] = useState(-1);
   const timeArray = ["아침", "점심", "저녁"];
@@ -31,10 +31,13 @@ export default function WriteReview() {
     const today = new Date();
     const time = today.getHours() * 100 + today.getMinutes();
     if (time > 710 && time < 1230) {
+      console.log(0,"의 서버값")
       setSelectedButton(0);
     } else if (time > 1230 && time < 1920) {
+      console.log(1,"의 서버값")
       setSelectedButton(1);
     } else {
+      console.log(2,"의 서버값")
       setSelectedButton(2);
     }
   }, []);
@@ -48,8 +51,8 @@ export default function WriteReview() {
     for (let i=idx+1;i<5;i++){
       temp.push(0)
     }
+    console.log(temp)
     setStars(temp)
-    setStarNum(idx+1)
   }
 
   function onchange(value:string){
@@ -87,14 +90,15 @@ export default function WriteReview() {
         </C.ButtonsContainer>
 
         <W.StarContainer>
-          {/* <Image src={emptyStar}/>
-            <Image src={emptyStar}/>
-            <Image src={emptyStar}/>
-            <Image src={emptyStar}/>
-            <Image src={emptyStar}/> */}
-          {/* {stars.map((star, idx) => (
-            <Image src={star ? fullStar : emptyStar} key={idx} onClick={()=>paintStar(idx)}/>
-          ))} */}
+          {
+            stars.map((star,idx) => (
+              <Star 
+              className={star ? "full" : "empty"}
+              key={idx}
+              onClick={()=>paintStar(idx)}
+               />
+            ))
+          }
         </W.StarContainer>
         <W.CommentInputContainer>
           <W.CommentInput 

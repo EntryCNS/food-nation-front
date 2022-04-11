@@ -126,7 +126,7 @@ export default function Calendar() {
       // 날짜 설정
       console.log(test2.getDate() - test.getDay() + idx + 1)
       setDate(test2.getDate() - test.getDay() + idx + 1)
-      
+      // month까지 바꾸면
 
     } else if (idx < test.getDay() + test1.getDate()) {
       // 이번달 | 이번달 요일 + idx + 1(idx가 0부터 시작)

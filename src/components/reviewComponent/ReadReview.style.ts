@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled,{css} from "styled-components";
 
 export const Container = styled.div`
     min-width:580px;
@@ -122,6 +122,7 @@ export const StarContainer = styled.div`
     width:58px;
     display:flex;
     justify-content:space-between;
+    
 `
 
 export const Comment = styled.div`

@@ -9,8 +9,6 @@ import FullStar from "../../assets/image/review/readFullStar.svg";
 
 import {useRecoilState} from "recoil";
 import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review/calednar";
-import { BlobOptions } from "buffer";
-import Review from "pages/review";
 
 // 달 넘길 때 년, 월, 일, 요일 바꿔주기
 
