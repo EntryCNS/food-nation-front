@@ -1,9 +1,10 @@
+// 날짜를 캘린더에서 
+
 import { useEffect, useState } from "react";
 
 import * as Cal from "./Calendar.style";
 
-import LeftArrow from "../../assets/image/review/leftArrow.svg";
-import RightArrow from "../../assets/image/review/rightArrow.svg";
+import ArrowSvg from "../../assets/image/review/arrow.svg"
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review/calednar";
@@ -13,24 +14,18 @@ import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review
 // recoil과 useState를 두개 다 써서 캘린더상에서는 useState를 쓰고 밖에서는
 // recoil을 쓰던가 해야됨
 
+// 1. 날짜선택했을 때 날짜 세팅
+
+
 export default function Calendar() {
   let today = new Date();
-
-  // const [year, setYear] = useState(today.getFullYear());
-  // const [month, setMonth] = useState(today.getMonth() + 1);
-  // const [date, setDate] = useState(today.getDate());
-  // const [day, setDay] = useState(today.getDay());
 
   const [year,setYear] = useRecoilState(calendarYear)
   const [month,setMonth] = useRecoilState(calendarMonth)
   const [date,setDate] = useRecoilState(calendarDate)
   const [day,setDay] = useRecoilState(calendarDay)
-
+  
   useEffect(() => {
-    // setYear(today.getFullYear());
-    // setMonth(today.getMonth()+1);
-    // setDate(today.getDate())
-    // setDay(today.getDay())
     setting()
     requestData(today.getMonth()+1, today.getDate());
   }, []);
@@ -42,24 +37,20 @@ export default function Calendar() {
     setDay(today.getDay())
   }
 
+
   // 이번달 첫날의
   let currentMonthFirst: Date = new Date(year, month - 1, 1);
-  // console.log(currentMonthFirst.getDate())
-  // console.log(currentMonthFirst.getDay())
-
   // 이번달 마지막날
   let currentMonthLast: Date = new Date(year, month, 0);
-  // console.log(currentMonthLast.getDate())
-  // console.log(currentMonthLast.getDay())
-
   // 지난달 마지막날
   let previousMonthLast: Date = new Date(year, month - 1, 0);
-  // console.log(previousMonthLast.getDate())
-  // console.log(previousMonthLast.getDay())
 
+
+  // 달력 한 면의 날짜를 채워넣는 배열
   let dayArray: number[] = [];
-
+  // 달력 한 면의 색을 채워넣는 배열
   let colorArray: boolean[] = [];
+
 
   for (
     let i = previousMonthLast.getDate() - (currentMonthFirst.getDay() - 1);
@@ -94,7 +85,6 @@ export default function Calendar() {
   // recoil값에서 년/달 만 변경
   //이전달
   function previousMonth(): void {
-    // selected를 변경해서 달력이동할 때 선택을 없앤다
     setSelected(-1);
     setMonth(month - 1);
     if (month == 1) {
@@ -104,7 +94,6 @@ export default function Calendar() {
   }
   // 다음달
   function nextMonth(): void {
-    // selected를 변경해서 달력이동할 때 선택을 없앤다
     setSelected(-1);
     setMonth(month + 1);
     if (month == 12) {
@@ -116,43 +105,27 @@ export default function Calendar() {
   // 날짜 선택시 날짜를 바꾸고 그 날짜의 정보를 가져옴
   // 저번, 이번, 다음 달에 따라 조정
   function selectDay(idx: number) {
+    // // 선택해줌
+    // setSelected(idx);
+    // if (idx < currentMonthFirst.getDay()) { 
+    //   // 지난 달 선택
+    //   requestData(month - 1, previousMonthLast.getDate() - currentMonthFirst.getDay() + idx + 1);
 
-    // 선택해줌
-    setSelected(idx);
-    if (idx < currentMonthFirst.getDay()) {
-      // 이번달 - 1 | 지난달날짜 - 이번달 요일 + idx + 1(idx가 0부터 시작)
-      requestData(month - 1, previousMonthLast.getDate() - currentMonthFirst.getDay() + idx + 1);
+    // } else if (idx < currentMonthFirst.getDay() + currentMonthLast.getDate()) {
+    //   // 이번달 선택
 
-      // 날짜 설정
-      console.log(previousMonthLast.getDate() - currentMonthFirst.getDay() + idx + 1)
-      setDate(previousMonthLast.getDate() - currentMonthFirst.getDay() + idx + 1)
-      // month까지 바꾸면
+    //   // 이번달 | 이번달 요일 + idx + 1(idx가 0부터 시작)
+    //   requestData(month, idx - currentMonthFirst.getDay() + 1);
 
-    } else if (idx < currentMonthFirst.getDay() + currentMonthLast.getDate()) {
-      // 이번달 | 이번달 요일 + idx + 1(idx가 0부터 시작)
-      requestData(month, idx - currentMonthFirst.getDay() + 1);
+    //   setDate(idx-currentMonthFirst.getDay()+1)
+    //   setDay(idx % 7)
 
-      setDate(idx-currentMonthFirst.getDay()+1)
-      setDay(idx % 7)
+    // } else {
+    //   // 다음달 선택
 
-      // 레코일은 review페이지 내에서만 사용
-      // 나는 model -> view 를 common에 넣고 사용
-      // component화 했을 때props로 useState값들을 넘겨줘서 
-      // recoil을 사용하지 않는다
-      // 
-      // 근데 그러면 나도 props로 useRecoil을 넘겨야함?
-      // 그럴거면 useRecoil을 사용하는게 의미가 있을까?
-      // 어떻게해야해!
-      
-    } else {
-      // 이번달+1 | 이번달 요일 + 이번달 날짜 + idx + 1(idx가 0부터 시작)
-      requestData(month + 1, idx - currentMonthFirst.getDay() - currentMonthLast.getDate() + 1);
-
-    }
-
-    // 눌렀을 때 recoil변화는 날짜/요일만 변경한다
-    // 저번달이 눌렸다고 month를 변경하면 달력이 저번달로 변경된다
-
+    //   // 이번달+1 | 이번달 요일 + 이번달 날짜 + idx + 1(idx가 0부터 시작)
+    //   requestData(month + 1, idx - currentMonthFirst.getDay() - currentMonthLast.getDate() + 1);
+    // }
   }
 
   // 캘린더에 띄울 영어
@@ -172,10 +145,6 @@ export default function Calendar() {
   ];
 
 
-  
-
-  
-
 
   return (
     <Cal.CalendarContainer>
@@ -184,13 +153,17 @@ export default function Calendar() {
         <div>{monthes[month - 1]}</div>
         <div onClick={previousMonth}>
           {/* <Image src={leftArrow} /> */}
-          <LeftArrow/>
+          {/* <LeftArrow/> */}
+          <ArrowSvg/>
         </div>
         <div onClick={nextMonth}>
           {/* <Image src={rightArrow} /> */}
-          <RightArrow/>
+          {/* <RightArrow/> */}
+          <ArrowSvg className="rightArrow"/>
         </div>
       </nav>
+
+
       <Cal.DayOfWeek>
         <div>일</div>
         <div>월</div>
@@ -200,13 +173,10 @@ export default function Calendar() {
         <div>금</div>
         <div>토</div>
       </Cal.DayOfWeek>
+
+
       <Cal.Calendar>
         {
-          // selected속성의 조건은
-          // selected == idx는 선택된 날짜를 우선적으로 뛰우고
-          // 선택된 게 없다면
-          // selected < 0 (선택이 안 됐을 때)
-          // date + 1 == idx
           dayArray?.map((day, idx) => (
             <Cal.Day
               key={idx}

@@ -2,10 +2,9 @@ import { useState,useEffect } from "react";
 
 import * as R from "./ReadReview.style";
 import * as C from "./Common.style"
-import LeftArrow from"../../assets/image/review/leftArrow.svg"
-import RightArrow from "../../assets/image/review/rightArrow.svg";
-import EmptyStar from "../../assets/image/review/readEmptyStar.svg";
-import FullStar from "../../assets/image/review/readFullStar.svg";
+
+import ArrowSvg from "../../assets/image/review/arrow.svg"
+import Star from "../../assets/image/review/readStar.svg"
 
 import {useRecoilState} from "recoil";
 import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review/calednar";
@@ -109,20 +108,6 @@ export default function ReadReview() {
     }
   }, []);
 
-  // 더미데이터
-  
-  function makeStarArray(starNum:number):boolean[]{
-    let starArray = [];
-    for(let i = 0;i<starNum;i++){
-      starArray.push(true)
-    }
-    for(let i = 0;i<5-starNum;i++){
-      starArray.push(false)
-    }
-    console.log(starArray)
-    return starArray
-  }
-  
   const dayArray = ['일','월','화','수','목','금','토'];
 
   // recoil값에서 일/요일/월/년까지 변경
@@ -147,6 +132,21 @@ export default function ReadReview() {
   }
 
 
+
+    function makeStarArray(starNum:number):boolean[]{
+    let starArray = [];
+    for(let i = 0;i<starNum;i++){
+      starArray.push(true)
+    }
+    for(let i = 0;i<5-starNum;i++){
+      starArray.push(false)
+    }
+    console.log(starArray)
+    return starArray
+  }
+  
+
+
   
   return (
     <R.Container>
@@ -154,7 +154,8 @@ export default function ReadReview() {
         <R.NavContainer>
           <nav>
             <div onClick={previousDate}>
-              <LeftArrow/>
+              {/* <LeftArrow/> */}
+              <ArrowSvg/>
             </div>
             <div>{year}</div>
             <div>.</div>
@@ -163,7 +164,8 @@ export default function ReadReview() {
             <div>{date < 10 ? "0"+date : date}</div>
             <div>({dayArray[day]})</div>
             <div onClick={nextDate}>
-              <RightArrow/>
+              {/* <RightArrow/> */}
+              <ArrowSvg className="rightArrow"/>
             </div>
           </nav>
           <C.ButtonsContainer>
@@ -184,14 +186,15 @@ export default function ReadReview() {
             <R.StarContainer>
               {/* {
                 makeStarArray(review.stars).map((isFull) => {
-                  isFull ? (<FullStar/>) : (<EmptyStar/>)
+                  isFull ? <Star/> : <Star className="empty"/>
+                  // isFull ? console.log("ㅎㅇ") : console.log("ㅂㅇ")
                 })
               } */}
-              <FullStar/>
-              {review.stars > 1 ? <FullStar/> : <EmptyStar/>}
-              {review.stars > 2 ? <FullStar/> : <EmptyStar/>}
-              {review.stars > 3 ? <FullStar/> : <EmptyStar/>}
-              {review.stars > 4 ? <FullStar/> : <EmptyStar/>}
+              <Star/>
+              {review.stars > 1 ? <Star/> : <Star className="empty"/>}
+              {review.stars > 2 ? <Star/> : <Star className="empty"/>}
+              {review.stars > 3 ? <Star/> : <Star className="empty"/>}
+              {review.stars > 4 ? <Star/> : <Star className="empty"/>}
             </R.StarContainer>
             <R.Comment>
               {

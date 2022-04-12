@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 import * as C from "./Common.style"
 import * as W from "./WriteReview.style";
 
-// import leftArrow from "../../assets/image/review/leftArrow.svg";
-// import rightArrow from "../../assets/image/review/rightArrow.svg";
-// import EmptyStar from "../../assets/image/review/writeEmptyStar.svg";
-// import fullStar from "../../assets/image/review/writeFullStar.svg";
+// 별을 read와 write 같은 걸 사용해 봤지만 
 import Star from "../../assets/image/review/writeStar.svg"
 
 import Calendar from "components/reviewComponent/Calendar";
+import CalendarTest from "components/reviewComponent/CalendarTest"
 
 
 export default function WriteReview() {
@@ -75,7 +73,8 @@ export default function WriteReview() {
   return (
     <W.Container>
       <W.InnerContainer>
-        <Calendar></Calendar>
+        {/* <Calendar></Calendar> */}
+        <CalendarTest></CalendarTest>
 
         <C.ButtonsContainer>
           {timeArray.map((time, idx) => (
@@ -93,7 +92,9 @@ export default function WriteReview() {
           {
             stars.map((star,idx) => (
               <Star 
-              className={star ? "full" : "empty"}
+              width="30px"
+              height="30px"
+              className={star ? "star" : "empty star"}
               key={idx}
               onClick={()=>paintStar(idx)}
                />
