@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
       * {
         box-sizing: border-box;
         color:${(props) => props.theme.fontColor};
+        transition:0.2s;
       }
       html{
         height:100%;

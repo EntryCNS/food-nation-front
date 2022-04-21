@@ -95,12 +95,14 @@ export const RankingNumber = styled.div`
     width: 15px;
     height: 15px;
     color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     background-color:${(props) => props.theme.blue};
     border-radius: 50%;
     font-weight: 500;
     font-size: 10px;
     line-height: 12px;
-    text-align:center;
 `
 
 export const MenuCheckBar = styled.div`

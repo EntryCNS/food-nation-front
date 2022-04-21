@@ -8,7 +8,8 @@ export const lightTheme = {
     darkGray: "#434343",
     gray: "#636363",
     gradient: "linear-gradient(#6DB2F4, #FCFFB8)",
-    subGradient: "linear-gradient(#69B0F5, #FFFFFF)"
+    subGradient: "linear-gradient(#69B0F5, #FFFFFF)",
+    border: "#F4F4F4"
 }
 export const darkTheme = {
     fontColor: "#FFFFFF",
@@ -20,5 +21,6 @@ export const darkTheme = {
     darkGray: "#434343",
     gray: "#636363",
     gradient: "linear-gradient(#141414,#4B4B4B)",
-    subGradient: "linear-gradient(#141414,#4B4B4B)"
+    subGradient: "linear-gradient(#141414,#4B4B4B)",
+    border: "#333333"
 }

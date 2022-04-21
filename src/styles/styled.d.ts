@@ -12,5 +12,6 @@ declare module "styled-components" {
         gray: string,
         gradient: string,
         subGradient: string
+        border: string,
     }
 }
