@@ -22,12 +22,13 @@ export default function ReadReview() {
   const [month,setMonth] = useRecoilState(calendarMonth)
   const [date,setDate] = useRecoilState(calendarDate)
   const [day,setDay] = useRecoilState(calendarDay)
+  
 
   useEffect(() => {
     if (year > 0 && month > 0 && date > 0){
       requestData(month,date);
     }
-  },[year,month,date,day])
+  },[year,month,date])
   function requestData(month: number, idx: number) {
     console.log("서버통신-리뷰가져오기", month, idx);
   }
@@ -110,40 +111,39 @@ export default function ReadReview() {
 
   const dayArray = ['일','월','화','수','목','금','토'];
 
-  // recoil값에서 일/요일/월/년까지 변경
-  function previousDate(): void {
-    // 달이 넘어갈 때
-    if (date-1 < 1){
-      // 년이 넘어갈 때
-      if (month - 1 < 1) {
-        setYear(year - 1)
-        setMonth(12)
-      } else {
 
-      }
+  // // recoil값에서 일/요일/월/년까지 변경
+  // function previousDate(): void {
 
-    } else {
-      // setDate(Date)
-    }
+  // }
+  // // 다음날
+  // function nextDate(): void {
+
+  // }
+
+  // 날짜 변경
+  function changeDate(x:number):void{
+    // Date는 넘어가면 알아서 맞춰줘서
+    const makeDate = new Date(year,month-1,date+x)
+    setYear(makeDate.getFullYear())
+    setMonth(makeDate.getMonth()+1)
+    setDate(makeDate.getDate())
+    setDay(makeDate.getDay() % 7)
   }
-  // 다음달
-  function nextDate(): void {
-
-  }
 
 
-
-    function makeStarArray(starNum:number):boolean[]{
-    let starArray = [];
-    for(let i = 0;i<starNum;i++){
-      starArray.push(true)
-    }
-    for(let i = 0;i<5-starNum;i++){
-      starArray.push(false)
-    }
-    console.log(starArray)
-    return starArray
-  }
+  // 안됨
+  //   function makeStarArray(starNum:number):boolean[]{
+  //   let starArray = [];
+  //   for(let i = 0;i<starNum;i++){
+  //     starArray.push(true)
+  //   }
+  //   for(let i = 0;i<5-starNum;i++){
+  //     starArray.push(false)
+  //   }
+  //   console.log(starArray)
+  //   return starArray
+  // }
   
 
 
@@ -153,7 +153,7 @@ export default function ReadReview() {
       <R.InnerContainer>
         <R.NavContainer>
           <nav>
-            <div onClick={previousDate}>
+            <div onClick={() => changeDate(-1)}>
               {/* <LeftArrow/> */}
               <ArrowSvg/>
             </div>
@@ -163,7 +163,7 @@ export default function ReadReview() {
             <div>.</div>
             <div>{date < 10 ? "0"+date : date}</div>
             <div>({dayArray[day]})</div>
-            <div onClick={nextDate}>
+            <div onClick={() => changeDate(1)}>
               {/* <RightArrow/> */}
               <ArrowSvg className="rightArrow"/>
             </div>

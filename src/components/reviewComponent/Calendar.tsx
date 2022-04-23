@@ -58,7 +58,6 @@ export default function Calendar() {
   // console.log(previousMonthLast.getDay())
 
   let dayArray: number[] = [];
-
   let colorArray: boolean[] = [];
 
   for (
