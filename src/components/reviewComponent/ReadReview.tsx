@@ -18,21 +18,6 @@ import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review
 
 export default function ReadReview() {
 
-  const [year,setYear] = useRecoilState(calendarYear)
-  const [month,setMonth] = useRecoilState(calendarMonth)
-  const [date,setDate] = useRecoilState(calendarDate)
-  const [day,setDay] = useRecoilState(calendarDay)
-  
-
-  useEffect(() => {
-    if (year > 0 && month > 0 && date > 0){
-      requestData(month,date);
-    }
-  },[year,month,date])
-  function requestData(month: number, idx: number) {
-    console.log("서버통신-리뷰가져오기", month, idx);
-  }
-
 
   const [reviews, setReviews] = useState([
     {
@@ -82,7 +67,23 @@ export default function ReadReview() {
     comment:string;
   }
 
-  // 아침점심저 녁 중 선택된 버튼
+  const [year,setYear] = useRecoilState(calendarYear)
+  const [month,setMonth] = useRecoilState(calendarMonth)
+  const [date,setDate] = useRecoilState(calendarDate)
+  const [day,setDay] = useRecoilState(calendarDay)
+  
+
+  useEffect(() => {
+    if (year > 0 && month > 0 && date > 0){
+      requestData(month,date);
+    }
+  },[year,month,date])
+
+  function requestData(month: number, idx: number) {
+    console.log("서버통신-리뷰가져오기", month, idx);
+  }
+
+  // 아침점심저녁 중 선택된 버튼
   const [selectedButton, setSelectedButton] = useState(-1);
   // 버튼 map출력 배열
   const timeArray = ["아침", "점심", "저녁"];
