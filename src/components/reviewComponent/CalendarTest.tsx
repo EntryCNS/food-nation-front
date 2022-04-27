@@ -45,6 +45,10 @@ export default function Calendar({
   const [calYear, setCalYear] = useState(today.getFullYear());
   const [calMonth, setCalMonth] = useState(today.getMonth());
 
+  // 선택된 날짜를 비교할 때 더해질 값 년, 달
+  // const [tempYear,setTempYear] = useState(0)
+  const [tempMonth, setTempMonth] = useState(0);
+
   // 이번달 첫날의
   let currentMonthFirst: Date = new Date(calYear, calMonth, 1);
   // 이번달 마지막날
@@ -92,52 +96,87 @@ export default function Calendar({
 
   // 값 초기화 month 그대로 초기화
   useEffect(() => {
-    setYear(today.getFullYear())
-    setMonth(today.getMonth())
-    setDate(today.getDate())
-  },[])
+    setYear(today.getFullYear());
+    setMonth(today.getMonth());
+    setDate(today.getDate());
+  }, []);
 
   // props로 들어오는 값이 바뀔 때 실행, 서버통신 넣기
   useEffect(() => {
     // propsFunction(month,year,date)|
-    console.log("year",year)
-    console.log("month",month)
-    console.log("date",date)
+    console.log("year", year);
+    console.log("month", month);
+    console.log("date", date);
   }, [year, month, date]);
-
 
   // 날짜 선택시 날짜를 바꾸고 그 날짜의 정보를 가져옴
   // 저번, 이번, 다음 달에 따라 조정
-  // 
+  //
   // selectDay함수에서는 year,month,date를 calYear,calMonth를 사용하기 때문에 선택이 켈린더에 영향을 끼치지 않는다
   function selectDay(idx: number) {
+    // 지난 달 선택
     if (idx < currentMonthFirst.getDay()) {
-      if (calMonth == 0){
-        setYear(calYear-1)
-        setMonth(11)
+      if (calMonth == 0) {
+        setYear(calYear - 1);
+        setMonth(11);
+      } else {
+        setYear(calYear);
+        setMonth(calMonth - 1);
       }
-      else{
-        setYear(calYear)
-        setMonth(calMonth-1)
-      }
-      setDate(previousMonthLast.getDate() - currentMonthFirst.getDay() + idx + 1)
+      setDate(
+        previousMonthLast.getDate() - currentMonthFirst.getDay() + idx + 1
+      );
 
+      // 이번 달 선택
     } else if (idx < currentMonthFirst.getDay() + currentMonthLast.getDate()) {
-      setYear(calYear)
-      setMonth(calMonth)
-      setDate(idx - currentMonthFirst.getDay() + 1)
+      setYear(calYear);
+      setMonth(calMonth);
+      setDate(idx - currentMonthFirst.getDay() + 1);
 
+      // 다음 달 선택
     } else {
-      if (calMonth == 1){
-        setYear(calYear+1)
-        setMonth(0)
-      } else{
-        setYear(calYear)
-        setMonth(calMonth + 1)
+      if (calMonth == 1) {
+        setYear(calYear + 1);
+        setMonth(0);
+      } else {
+        setYear(calYear);
+        setMonth(calMonth + 1);
       }
-      setDate(idx - currentMonthFirst.getDay() - currentMonthLast.getDate() + 1)
+      setDate(
+        idx - currentMonthFirst.getDay() - currentMonthLast.getDate() + 1
+      );
     }
   }
+
+  // 객체를 생성해서 같은 날인지 판단
+  function isSameDate([
+    calYear,
+    calMonth,
+    calDate,
+    year,
+    month,
+    date,
+    tempMonth,
+  ]: number[]) {
+    const cal = new Date(calYear, calMonth - tempMonth, calDate);
+    const select = new Date(year, month, date);
+
+    if (cal.getFullYear() == select.getFullYear() &&
+      cal.getMonth() == select.getMonth() &&
+      cal.getDate() == select.getDate()
+    ){
+      return true
+    } else {
+      return false
+    }
+
+  }
+
+
+
+  // 비동기 처리 함수 만들어서 select함수를 실행 후,
+  // props로 들어온 함수를 그 값을 활용해 인자로 넘겨주기
+ 
 
   return (
     <Cal.CalendarContainer>
@@ -167,15 +206,21 @@ export default function Calendar({
           <Cal.Day
             key={idx}
             visable={colorArray[idx]}
-            // selected={i
-            //   selected == idxi
-            //     ? true
-            //     : selected < 0 &&
-            //       date == idx - currentMonthFirst.getDay() + 1 &&
-            //       month == today.getMonth() + 1
-            //     ? true
-            //     : false
-            // }
+            // year,month,date모두 같을 때 selected
+            // tempYear/Month는 지난 달/ 다음달 선택 시를 고려
+            selected={isSameDate([
+              calYear,
+              calMonth,
+              idx - currentMonthFirst.getDay() + 1,
+              year,
+              month,
+              date,
+              tempMonth,
+            ])}
+            // ((calYear == year) && (calMonth == month)
+            // && (date == idx-currentMonthFirst.getDay() + 1)) ?
+            // true : false
+            // () => isSameDate(calYear,calMonth)
             onClick={() => selectDay(idx)}
           >
             {day}
