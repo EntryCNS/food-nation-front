@@ -7,14 +7,13 @@ import * as W from "./WriteReview.style";
 import Star from "../../assets/image/review/writeStar.svg";
 
 import Calendar from "components/reviewComponent/Calendar";
-import CalendarTest from "components/reviewComponent/CalendarTest";
 
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
   calendarYear,
   calendarMonth,
   calendarDate,
-} from "stores/review/calednar";
+} from "stores/review/selectedDate";
 
 export default function WriteReview() {
   // 별
@@ -72,7 +71,8 @@ export default function WriteReview() {
       setReviewError(true);
     } else {
       setReviewError(false);
-      console.log("리뷰작성됨");
+
+      console.log(year,month+1,date,"일 리뷰는",stars.filter(e => 1 === e).length, review);
     }
   }
 
@@ -83,18 +83,24 @@ export default function WriteReview() {
   const [month, setMonth] = useRecoilState(calendarMonth);
   const [date, setDate] = useRecoilState(calendarDate);
 
+  useEffect(() => {
+    console.log("year",year)
+    console.log("month",month+1)
+    console.log("date",date)
+  },[year,month,date])
+
   return (
     <W.Container>
       <W.InnerContainer>
         {/* <Calendar></Calendar> */}
-        <CalendarTest
+        <Calendar
           year={year}
           setYear={setYear}
           month={month}
           setMonth={setMonth}
           date={date}
           setDate={setDate}
-        ></CalendarTest>
+        ></Calendar>
 
         <C.ButtonsContainer>
           {timeArray.map((time, idx) => (

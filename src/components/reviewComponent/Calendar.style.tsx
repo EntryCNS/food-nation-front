@@ -1,6 +1,5 @@
 import styled, { css } from "styled-components";
 
-// 달력은 우재한테 보내야함
 export const CalendarContainer = styled.div`
   /* width:214px; */
   /* height:219px; */
@@ -48,6 +47,7 @@ export const DayOfWeek = styled.div`
   display: flex;
   justify-content: space-between;
   color: #434343;
+  user-select:none;
 `;
 
 export const Calendar = styled.div`
@@ -77,6 +77,7 @@ export const Day = styled.div<DayType>`
   justify-content: center;
   align-items: center;
 
+  user-select:none;
   cursor: pointer;
 
   font-family: Roboto;

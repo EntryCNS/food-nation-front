@@ -170,6 +170,7 @@ export const CommentInput = styled.textarea`
 `;
 
 export const Button = styled.button`
+ 
   width: 240px;
   height: 70px;
   display: flex;

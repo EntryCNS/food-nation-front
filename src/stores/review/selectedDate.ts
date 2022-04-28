@@ -31,9 +31,5 @@ const calendarDate = atom<number>({
     key:"calendarDate",
     default:0
 })
-const calendarDay = atom<number>({
-    key:"calednarDay",
-    default:0
-})
 
-export {calendarYear,calendarMonth,calendarDate,calendarDay}
+export {calendarYear,calendarMonth,calendarDate}

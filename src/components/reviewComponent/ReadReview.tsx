@@ -7,7 +7,8 @@ import ArrowSvg from "../../assets/image/review/arrow.svg"
 import Star from "../../assets/image/review/readStar.svg"
 
 import {useRecoilState} from "recoil";
-import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review/calednar";
+import {calendarYear,calendarMonth,calendarDate} from "stores/review/selectedDate";
+import { recoilCalYear, recoilCalMonth } from "stores/calendar/calLocation";
 
 // 달 넘길 때 년, 월, 일, 요일 바꿔주기
 
@@ -17,8 +18,6 @@ import {calendarYear,calendarMonth,calendarDate,calendarDay} from "stores/review
 // 이 페이지에 들어오면 더미데이터를 돌려서 한 배열에 미리 만들기 with useEffect
 
 export default function ReadReview() {
-
-
   const [reviews, setReviews] = useState([
     {
       id: 1,
@@ -70,14 +69,14 @@ export default function ReadReview() {
   const [year,setYear] = useRecoilState(calendarYear)
   const [month,setMonth] = useRecoilState(calendarMonth)
   const [date,setDate] = useRecoilState(calendarDate)
-  const [day,setDay] = useRecoilState(calendarDay)
-  
 
-  useEffect(() => {
-    if (year > 0 && month > 0 && date > 0){
-      requestData(month,date);
-    }
-  },[year,month,date])
+  const [day,setDay] = useState(0)
+
+  // useEffect(() => {
+  //   if (year > 0 && month > 0 && date > 0){
+  //     requestData(month,date);
+  //   }
+  // },[year,month,date])
 
   function requestData(month: number, idx: number) {
     console.log("서버통신-리뷰가져오기", month, idx);
@@ -108,29 +107,39 @@ export default function ReadReview() {
       console.log(2,"의 서버값")
       setSelectedButton(2);
     }
+
+    
   }, []);
 
   const dayArray = ['일','월','화','수','목','금','토'];
 
 
-  // // recoil값에서 일/요일/월/년까지 변경
-  // function previousDate(): void {
-
-  // }
-  // // 다음날
-  // function nextDate(): void {
-
-  // }
+//   recoilCalYear, recoilCalMonth
+  const [calYear,setCalYear] = useRecoilState(recoilCalYear)
+  const [calMonth,setCalMonth] = useRecoilState(recoilCalMonth)
 
   // 날짜 변경
   function changeDate(x:number):void{
     // Date는 넘어가면 알아서 맞춰줘서
-    const makeDate = new Date(year,month-1,date+x)
+    const makeDate = new Date(year,month,date+x)
+
+    // readReview에서 날짜를 변경하다가 달이 넘어갔을 때 처리
+    if (makeDate.getMonth() !== calMonth){
+        // console.log("달이 다름")
+        const moveCal = new Date(makeDate.getFullYear(),makeDate.getMonth(),makeDate.getDate())
+        setCalYear(moveCal.getFullYear())
+        setCalMonth(moveCal.getMonth())
+    }
     setYear(makeDate.getFullYear())
-    setMonth(makeDate.getMonth()+1)
+    setMonth(makeDate.getMonth())
     setDate(makeDate.getDate())
-    setDay(makeDate.getDay() % 7)
   }
+
+  // 요일변경
+  useEffect(() => {
+    const forSetDay = new Date(year,month,date);
+    setDay(forSetDay.getDay())
+  },[year,month,date])
 
 
   // 안됨
@@ -160,7 +169,7 @@ export default function ReadReview() {
             </div>
             <div>{year}</div>
             <div>.</div>
-            <div>{month < 10 ? "0"+month : month}</div>
+            <div>{month < 9 ? "0"+(month+1) : month+1}</div>
             <div>.</div>
             <div>{date < 10 ? "0"+date : date}</div>
             <div>({dayArray[day]})</div>
