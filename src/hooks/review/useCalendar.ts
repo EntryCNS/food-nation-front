@@ -2,6 +2,10 @@ const useCalendar = ({
     currentMonthFirst,
     currentMonthLast,
     previousMonthLast
+}:{
+  currentMonthFirst:Date,
+  currentMonthLast:Date,
+  previousMonthLast:Date
 }) => {
 
   // 날짜 배열에 넣기
@@ -29,7 +33,7 @@ const useCalendar = ({
     colorArray.push(false);
   }
 
-  return {};
+  return {dayArray,colorArray};
 };
 
 export default useCalendar;

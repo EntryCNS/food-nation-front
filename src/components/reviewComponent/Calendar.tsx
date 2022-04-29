@@ -9,6 +9,10 @@ import ArrowSvg from "../../assets/image/review/arrow.svg";
 import { useRecoilState } from "recoil";
 import { recoilCalYear, recoilCalMonth } from "stores/calendar/calLocation";
 
+import useCalendar from "hooks/review/useCalendar";
+import useSelectCalendarDate from "hooks/review/useSelectCalendarDate";
+import useMoveCalendarMonth from "hooks/review/useMoveCalendarMonth";
+
 export default function Calendar({
   year,
   setYear,
@@ -63,12 +67,11 @@ export default function Calendar({
   // 선택된 날짜를 비교할 때 더해질 달
   const [tempMonth, setTempMonth] = useState(0);
 
-  // // 이번달 첫날의
-  // let currentMonthFirst: Date = new Date(calYear, calMonth, 1);
-  // // 이번달 마지막날
-  // let currentMonthLast: Date = new Date(calYear, calMonth + 1, 0);
-  // // 지난달 마지막날
-  // let previousMonthLast: Date = new Date(calYear, calMonth, 0);
+  useEffect(() => {
+    console.log("year", year);
+    console.log("month", month);
+    console.log("date", date);
+  }, [year, month, date]);
 
   // 이번달 첫날의
   let currentMonthFirst: Date = new Date(calYear, calMonth, 1);
@@ -76,11 +79,11 @@ export default function Calendar({
   let currentMonthLast: Date = new Date(calYear, calMonth + 1, 0);
   // 지난달 마지막날
   let previousMonthLast: Date = new Date(calYear, calMonth, 0);
-
   // 날짜 배열에 넣기
   let dayArray: number[] = [];
   // 달력 한 면의 색을 채워넣는 배열
   let colorArray: boolean[] = [];
+
   for (
     let i = previousMonthLast.getDate() - (currentMonthFirst.getDay() - 1);
     i <= previousMonthLast.getDate();
@@ -102,24 +105,19 @@ export default function Calendar({
     colorArray.push(false);
   }
 
-  // 앞뒤 버튼만이 calYear, calMonth를 변경할 수 있다
-  function previousMonth(): void {
-    const tempDate = new Date(calYear, calMonth - 1);
-    setCalYear(tempDate.getFullYear());
-    setCalMonth(tempDate.getMonth());
-  }
-  // 다음달
-  function nextMonth(): void {
-    const tempDate = new Date(calYear, calMonth + 1);
+  function changeMonth(changeMonth: number) {
+    const tempDate = new Date(calYear, calMonth + changeMonth);
+    console.log(tempDate);
     setCalYear(tempDate.getFullYear());
     setCalMonth(tempDate.getMonth());
   }
 
-  // 날짜 선택시 날짜를 바꾸고 그 날짜의 정보를 가져옴
-  // 저번, 이번, 다음 달에 따라 조정
-  //
-  // selectDay함수에서는 year,month,date를 calYear,calMonth를 사용하기 때문에 선택이 켈린더에 영향을 끼치지 않는다
   function selectDay(idx: number) {
+    // 날짜 선택시 날짜를 바꾸고 그 날짜의 정보를 가져옴
+    // 저번, 이번, 다음 달에 따라 조정
+    //
+    // selectDay함수에서는 year,month,date를 calYear,calMonth를 사용하기 때문에 선택이 켈린더에 영향을 끼치지 않는다
+
     // 지난 달 선택
     if (idx < currentMonthFirst.getDay()) {
       if (calMonth == 0) {
@@ -183,10 +181,10 @@ export default function Calendar({
       <nav>
         <div>{calYear}</div>
         <div>{monthes[calMonth]}</div>
-        <div onClick={previousMonth}>
+        <div onClick={() => changeMonth(-1)}>
           <ArrowSvg />
         </div>
-        <div onClick={nextMonth}>
+        <div onClick={() => changeMonth(1)}>
           <ArrowSvg className="rightArrow" />
         </div>
       </nav>
