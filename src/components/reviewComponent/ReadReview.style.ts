@@ -10,6 +10,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  *{
+    font-family:"Roboto";
+  }
 `;
 
 export const InnerContainer = styled.div`
@@ -39,7 +42,6 @@ export const InnerContainer = styled.div`
 export const NavTemp = styled.div`
   width: 500px;
   height: 10px;
-  display: fixed;
 `;
 
 // width 스크롤 보이게 조정 필요(스크롤 css 한 후)
@@ -53,7 +55,7 @@ export const NavContainer = styled.div`
   padding-right: 24px;
 
 
-  position: fixed;
+  position: absolute;
   /* background-color:rgba(0,0,0,0); */
 
   display: flex;
@@ -68,7 +70,6 @@ export const NavContainer = styled.div`
     display: flex;
     flex-flow: row nowrap;
     /* color:${(props) => (props.theme.fontColor)}; */
-
     div {
       font-weight: 600;
       /* color: #434343; */
@@ -130,6 +131,7 @@ export const StarContainer = styled.div`
 
   .empty{
      /* fill:${(props) => props.theme.background} */
+     fill:white;
   }
 `;
 

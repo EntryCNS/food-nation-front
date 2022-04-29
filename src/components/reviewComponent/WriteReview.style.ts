@@ -8,7 +8,9 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Roboto;
+  *{
+    font-family:"Roboto";
+  }
 `;
 
 export const InnerContainer = styled.div`

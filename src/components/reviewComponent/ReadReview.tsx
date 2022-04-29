@@ -14,13 +14,6 @@ import {
 } from "stores/review/selectedDate";
 import { recoilCalYear, recoilCalMonth } from "stores/calendar/calLocation";
 
-// 달 넘길 때 년, 월, 일, 요일 바꿔주기
-
-// 아침, 점심, 저녁 버튼 read랑 write시간 맞춰주기
-
-// 리뷰의 별들을 출력하는 과정
-// 이 페이지에 들어오면 더미데이터를 돌려서 한 배열에 미리 만들기 with useEffect
-
 export default function ReadReview() {
   const [reviews, setReviews] = useState([
     {
@@ -64,6 +57,7 @@ export default function ReadReview() {
       comment: "맛있어요",
     },
   ]);
+
   interface ReviewType {
     id: number;
     stars: number;
@@ -74,12 +68,9 @@ export default function ReadReview() {
   const [month, setMonth] = useRecoilState(calendarMonth);
   const [date, setDate] = useRecoilState(calendarDate);
 
+  // readReview에는 요일이 있다
   const [day, setDay] = useState(0);
-
-  function requestData(month: number, idx: number) {
-    console.log("서버통신-리뷰가져오기", month, idx);
-  }
-
+  
   // 아침점심저녁 중 선택된 버튼
   const [selectedButton, setSelectedButton] = useState(-1);
   // 버튼 map출력 배열
@@ -87,8 +78,11 @@ export default function ReadReview() {
 
   // 아침점심저녁 중 선택된 값에 따른 서버요청
   function buttonClick(idx: number): void {
-    console.log(idx,"서버통신");
+    requestData(idx)
     setSelectedButton(idx);
+  }
+  function requestData(time:number) {
+    console.log(month+1,"월",date,"일",time,"리뷰가져오기");
   }
 
   // 버튼의 초기값이 현제 시간에 따라 변경,
@@ -110,7 +104,7 @@ export default function ReadReview() {
 
   const dayArray = ["일", "월", "화", "수", "목", "금", "토"];
 
-  //   recoilCalYear, recoilCalMonth
+  // recoilCalYear, recoilCalMonth
   const [calYear, setCalYear] = useRecoilState(recoilCalYear);
   const [calMonth, setCalMonth] = useRecoilState(recoilCalMonth);
 
@@ -141,18 +135,23 @@ export default function ReadReview() {
     setDay(forSetDay.getDay());
   }, [year, month, date]);
 
-  // 안됨
-  function makeStarArray(starNum: number): boolean[] {
-    let starArray = [];
-    for (let i = 0; i < starNum; i++) {
-      starArray.push(true);
+
+  function makeStarArray(starNum:number):{filled:boolean,idx:number}[]{
+    let starArray:{filled:boolean,idx:number}[] = []
+    for (let i = 0;i<5;i++){
+      if (i < starNum){
+        starArray.push({
+          filled:true,
+          idx:i,
+        })
+      }else{
+        starArray.push({
+          filled:false,
+          idx:i,
+        })
+      }
     }
-    for (let i = 0; i < 5 - starNum; i++) {
-      starArray.push(false);
-    }
-    starArray.map((e) => {
-    });
-    return starArray;
+    return starArray
   }
 
   return (
@@ -190,13 +189,14 @@ export default function ReadReview() {
           <R.CommentContainer key={review.id}>
             <R.StarContainer>
               {
-                makeStarArray(review.stars).map((isFull,idx) => (
-                  <Star key={idx} className={isFull ? "full" : "empty"}/>
-              ))
+                makeStarArray(review.stars).map((star)=>(
+                  <Star key={star.idx} className={star.filled ? "fill" : "empty"
+                }/>
+                ))
               }
             </R.StarContainer>
             <R.Comment>{review.comment}</R.Comment>
-          </R.CommentContainer>
+          </R.CommentContainer> 
         ))}
       </R.InnerContainer>
     </R.Container>
