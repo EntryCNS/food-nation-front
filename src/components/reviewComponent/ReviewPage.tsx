@@ -21,7 +21,7 @@ export default function Review() {
       </section>
       <section>
         <WriteReview />
-      </section>
+      </section>    
     </R.ReviewPageWrapper>
   );
 }

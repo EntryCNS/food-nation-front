@@ -63,6 +63,13 @@ export default function Calendar({
   // 선택된 날짜를 비교할 때 더해질 달
   const [tempMonth, setTempMonth] = useState(0);
 
+  // // 이번달 첫날의
+  // let currentMonthFirst: Date = new Date(calYear, calMonth, 1);
+  // // 이번달 마지막날
+  // let currentMonthLast: Date = new Date(calYear, calMonth + 1, 0);
+  // // 지난달 마지막날
+  // let previousMonthLast: Date = new Date(calYear, calMonth, 0);
+
   // 이번달 첫날의
   let currentMonthFirst: Date = new Date(calYear, calMonth, 1);
   // 이번달 마지막날
