@@ -1,2 +1,1 @@
-export {default as ReadReview}  from "./ReadReview"
-export {default as WriteReview}  from "./WriteReview"
+export {default as ReviewPage}  from "./ReviewPage"
