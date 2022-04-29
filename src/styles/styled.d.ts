@@ -11,8 +11,5 @@ declare module "styled-components" {
         darkGray: string,
         gray: string,
         gradient: string,
-
-        modalBackground:string,
-        containerBackground:string,
     }
 }
