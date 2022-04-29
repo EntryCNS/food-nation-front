@@ -11,7 +11,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  background-color:${(props) => (props.theme.htmlBackground)};
+  background-color:${(props) => (props.theme.containerBackground)};
 `;
 
 export const InnerContainer = styled.div`
