@@ -187,5 +187,5 @@ export const Button = styled.button`
 
 export const ReviewError = styled.div`
   font-size: 13px;
-  /* color:#982911; */
+  color:#bcbcbc;
 `;

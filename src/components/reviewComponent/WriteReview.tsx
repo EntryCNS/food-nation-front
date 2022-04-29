@@ -132,7 +132,7 @@ export default function WriteReview() {
           />
         </W.CommentInputContainer>
         {reviewError && (
-          <W.ReviewError>별점과 글 모두 작성해주세요</W.ReviewError>
+          <W.ReviewError>*별점과 글 모두 작성해주세요</W.ReviewError>
         )}
         <W.Button onClick={onClick}>리뷰쓰기</W.Button>
       </W.InnerContainer>

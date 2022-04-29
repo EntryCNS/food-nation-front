@@ -18,6 +18,8 @@ export const CalendarContainer = styled.div`
     color: #434343;
     position: relative;
 
+    user-select:none;
+
     div:nth-child(2) {
       margin-left: 17px;
     }

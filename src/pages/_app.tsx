@@ -13,7 +13,8 @@ import ProfileBar from "components/profileBar";
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-    <ThemeProvider theme={lightTheme}>
+    {/* <ThemeProvider theme={lightTheme}> */}
+    <ThemeProvider theme={darkTheme}>
       <GlobalStyle />
       <Layout>
         <Component {...pageProps} />

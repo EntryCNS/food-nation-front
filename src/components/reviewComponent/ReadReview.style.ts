@@ -10,6 +10,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background-color:${(props) => (props.theme.htmlBackground)};
 `;
 
 export const InnerContainer = styled.div`
@@ -52,6 +54,7 @@ export const NavContainer = styled.div`
   padding-left: 12px;
   padding-right: 24px;
 
+
   position: fixed;
   /* background-color:rgba(0,0,0,0); */
 
@@ -60,13 +63,17 @@ export const NavContainer = styled.div`
   justify-content: space-between;
   z-index: 1;
 
+  user-select:none;
+
   /* box-sizing:border; */
   nav {
     display: flex;
     flex-flow: row nowrap;
+    color:${(props) => (props.theme.fontColor)};
+
     div {
       font-weight: 600;
-      color: #434343;
+      /* color: #434343; */
     }
     div:nth-child(1) {
       margin-right: 17px;
@@ -124,16 +131,15 @@ export const StarContainer = styled.div`
   justify-content: space-between;
 
   .empty{
-      // theme
-      fill:white;
+     fill:${(props) => props.theme.background}
+      /* fill:white; */
   }
 `;
 
 export const Comment = styled.div`
   margin-top: 10px;
   font-size: 11px;
-  color: #434343;
-  /* line-height:12.89px; */
+  color: ${(props) => (props.theme.description)};
   line-height: 13.6px;
   display: flex;
   word-break: keep-all;
