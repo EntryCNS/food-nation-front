@@ -10,8 +10,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background-color:${(props) => (props.theme.containerBackground)};
 `;
 
 export const InnerContainer = styled.div`
@@ -69,7 +67,7 @@ export const NavContainer = styled.div`
   nav {
     display: flex;
     flex-flow: row nowrap;
-    color:${(props) => (props.theme.fontColor)};
+    /* color:${(props) => (props.theme.fontColor)}; */
 
     div {
       font-weight: 600;
@@ -131,15 +129,14 @@ export const StarContainer = styled.div`
   justify-content: space-between;
 
   .empty{
-     fill:${(props) => props.theme.background}
-      /* fill:white; */
+     /* fill:${(props) => props.theme.background} */
   }
 `;
 
 export const Comment = styled.div`
   margin-top: 10px;
   font-size: 11px;
-  color: ${(props) => (props.theme.description)};
+  /* color: ${(props) => (props.theme.description)}; */
   line-height: 13.6px;
   display: flex;
   word-break: keep-all;
