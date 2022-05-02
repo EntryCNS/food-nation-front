@@ -4,14 +4,11 @@ import { useEffect, useState } from "react";
 
 import * as Cal from "./Calendar.style";
 
-import ArrowSvg from "../../assets/image/review/arrow.svg";
+import ArrowSvg from "../../../assets/image/review/arrow.svg";
 
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { recoilCalYear, recoilCalMonth } from "stores/calendar/calLocation";
-
-import useCalendar from "hooks/review/useCalendar";
-import useSelectCalendarDate from "hooks/review/useSelectCalendarDate";
-import useMoveCalendarMonth from "hooks/review/useMoveCalendarMonth";
+import { ThemeState } from "stores/themeAtom";
 
 export default function Calendar({
   year,
@@ -46,8 +43,6 @@ export default function Calendar({
 
   // 달력에 띄우기 위한 변수,
   // props로 들어오는 값과 독립적이다
-  // const [calYear, setCalYear] = useState(today.getFullYear());
-  // const [calMonth, setCalMonth] = useState(today.getMonth());
   const [calYear, setCalYear] = useRecoilState(recoilCalYear);
   const [calMonth, setCalMonth] = useRecoilState(recoilCalMonth);
 
@@ -63,9 +58,6 @@ export default function Calendar({
     setCalYear(today.getFullYear());
     setCalMonth(today.getMonth());
   }, []);
-
-  // 선택된 날짜를 비교할 때 더해질 달
-  const [tempMonth, setTempMonth] = useState(0);
 
   useEffect(() => {
     console.log("year", year);
@@ -111,6 +103,11 @@ export default function Calendar({
     setCalYear(tempDate.getFullYear());
     setCalMonth(tempDate.getMonth());
   }
+
+  // -- 아래는 날짜 선택
+
+  // 선택된 날짜를 비교할 때 더해질 달
+  const [tempMonth, setTempMonth] = useState(0);
 
   function selectDay(idx: number) {
     // 날짜 선택시 날짜를 바꾸고 그 날짜의 정보를 가져옴
@@ -160,9 +157,10 @@ export default function Calendar({
     year,
     month,
     date,
-    tempMonth,
-  ]: number[]) {
-    const cal = new Date(calYear, calMonth - tempMonth, calDate);
+  ]: // tempMonth,
+  number[]) {
+    const cal = new Date(calYear, calMonth, calDate);
+    // const cal = new Date(calYear, calMonth - tempMonth, calDate);
     const select = new Date(year, month, date);
 
     if (
@@ -176,16 +174,19 @@ export default function Calendar({
     }
   }
 
+  // 다크모드, 라이트모드에 따라 props로 넘겨주기
+  const isDark = useRecoilValue(ThemeState);
+
   return (
     <Cal.CalendarContainer>
       <nav>
         <div>{calYear}</div>
         <div>{monthes[calMonth]}</div>
         <div onClick={() => changeMonth(-1)}>
-          <ArrowSvg />
+          <ArrowSvg className="arrow"/>
         </div>
         <div onClick={() => changeMonth(1)}>
-          <ArrowSvg className="rightArrow" />
+          <ArrowSvg className="rightArrow arrow" />
         </div>
       </nav>
 
@@ -206,6 +207,7 @@ export default function Calendar({
             visable={colorArray[idx]}
             // year,month,date모두 같을 때 selected
             // tempYear/Month는 지난 달/ 다음달 선택 시를 고려
+            isDark={isDark}
             selected={isSameDate([
               calYear,
               calMonth,
@@ -213,7 +215,7 @@ export default function Calendar({
               year,
               month,
               date,
-              tempMonth,
+              // tempMonth,
             ])}
             onClick={() => selectDay(idx)}
           >

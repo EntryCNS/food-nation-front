@@ -18,8 +18,13 @@ export const CalendarContainer = styled.div`
     color: #434343;
     position: relative;
 
-    user-select:none;
+    user-select: none;
 
+    .arrow{
+      path{
+        fill:${(props) => (props.theme.fontColor)}
+      }
+    }
     div:nth-child(2) {
       margin-left: 17px;
     }
@@ -32,7 +37,7 @@ export const CalendarContainer = styled.div`
     div:nth-child(4) {
       cursor: pointer;
       position: absolute;
-      right: 10px; 
+      right: 10px;
       // svg
       .rightArrow {
         transform: rotate(180deg);
@@ -49,7 +54,7 @@ export const DayOfWeek = styled.div`
   display: flex;
   justify-content: space-between;
   color: #434343;
-  user-select:none;
+  user-select: none;
 `;
 
 export const Calendar = styled.div`
@@ -71,6 +76,7 @@ export const Calendar = styled.div`
 interface DayType {
   visable?: boolean;
   selected?: boolean;
+  isDark?: boolean;
 }
 
 export const Day = styled.div<DayType>`
@@ -79,7 +85,7 @@ export const Day = styled.div<DayType>`
   justify-content: center;
   align-items: center;
 
-  user-select:none;
+  user-select: none;
   cursor: pointer;
 
   font-family: Roboto;
@@ -87,9 +93,7 @@ export const Day = styled.div<DayType>`
   font-style: normal;
   font-weight: 400;
 
-  border-radius: 100%;
-  color: ${(props) => (props.visable ? "black" : "#CACACA")};
-  ${(props) =>
+  /* ${(props) =>
     props.selected
       ? css`
           background-color: #1556f7;
@@ -99,5 +103,38 @@ export const Day = styled.div<DayType>`
           :hover {
             background-color: #f4f4f4;
           }
-        `}
+        `} */
+
+  border-radius: 100%;
+  /* color: ${(props) => (props.visable ? "black" : "#CACACA")}; */
+  color: ${(props) =>
+    props.isDark
+      ? props.visable
+        ? "white"
+        : "#333333"
+      : props.visable
+      ? "black"
+      : "#cacaca"
+    };
+
+  ${(props) =>
+    props.selected
+      ? css`
+          background-color: #1556f7;
+          color: white;
+        `
+      : 
+      props.isDark ?
+      css`
+          :hover {
+            background-color: #757575;
+          }
+        `
+      : css`
+          :hover {
+            background-color:#f4f4f4;
+          }
+      `
+
+    }
 `;

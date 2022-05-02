@@ -83,38 +83,7 @@ export const Calendar = styled.div`
     } */
 `;
 
-interface DayType {
-  visable?: number;
-  selected?: number;
-}
 
-export const Day = styled.div<DayType>`
-  width: 32px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-
-  font-family: Roboto;
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 400;
-
-  border-radius: 100%;
-  color: ${(props) => (props.visable ? "black" : "#939393")};
-  ${(props) =>
-    props.selected
-      ? css`
-          background-color: #1556f7;
-          color: white;
-        `
-      : css`
-          :hover {
-            background-color: #f4f4f4;
-          }
-        `}
-`;
 
 interface StarType {
   isPainted?: boolean;
@@ -130,7 +99,7 @@ export const StarContainer = styled.div<StarType>`
     cursor: pointer;
   }
   .empty {
-    fill: white;
+    fill: ${(props) => (props.theme.background)};
   }
 `;
 
@@ -153,7 +122,9 @@ export const CommentInput = styled.textarea`
   border: none;
   outline: none;
   font-size: 11px;
-  color: #636363;
+  color: ${(props) => (props.theme.fontColor)};
+  /* color: #636363; */
+  background-color:${(props) =>(props.theme.background)};
   ::placeholder {
     color: #d0d0d0;
   }
@@ -162,11 +133,11 @@ export const CommentInput = styled.textarea`
   }
   ::-webkit-scrollbar-thumb {
     height: 17%;
-    background: #e4e4e4;
+    background: ${(props) => (props.theme.scrollBar)};
     border-radius: 15px;
   }
   ::-webkit-scrollbar-track {
-    background: #f4f4f4;
+    background: ${(props) => (props.theme.border)};
     border-radius: 15px;
   }
 `;

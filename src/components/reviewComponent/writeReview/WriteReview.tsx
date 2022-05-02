@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-import * as C from "./Common.style";
+import * as C from "../Common.style";
 import * as W from "./WriteReview.style";
 
 // 별을 read와 write 같은 걸 사용해 봤지만
-import Star from "../../assets/image/review/writeStar.svg";
+import Star from "../../../assets/image/review/writeStar.svg";
 
-import Calendar from "components/reviewComponent/Calendar";
+import Calendar from "components/reviewComponent/calendar/Calendar";
 
 import { useRecoilState } from "recoil";
 import {

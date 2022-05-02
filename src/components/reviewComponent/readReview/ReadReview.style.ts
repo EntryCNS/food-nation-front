@@ -30,11 +30,13 @@ export const InnerContainer = styled.div`
   }
   ::-webkit-scrollbar-thumb {
     height: 17%;
-    background: #e4e4e4;
+    background: ${(props) => (props.theme.scrollBar)};
+    /* background: #e4e4e4; */
     border-radius: 15px;
   }
   ::-webkit-scrollbar-track {
-    background: #f4f4f4;
+    background: ${(props) => (props.theme.border)};
+    /* background: #f4f4f4; */
     border-radius: 15px;
   }
 `;
@@ -69,7 +71,6 @@ export const NavContainer = styled.div`
   nav {
     display: flex;
     flex-flow: row nowrap;
-    /* color:${(props) => (props.theme.fontColor)}; */
     div {
       font-weight: 600;
       /* color: #434343; */
@@ -77,6 +78,9 @@ export const NavContainer = styled.div`
     div:nth-child(1) {
       margin-right: 17px;
       cursor: pointer;
+      .leftArrow{
+        /* fill:white; */
+      }
     }
     div:nth-child(3) {
       margin-left: 3.5px;
@@ -130,15 +134,13 @@ export const StarContainer = styled.div`
   justify-content: space-between;
 
   .empty{
-     /* fill:${(props) => props.theme.background} */
-     fill:white;
+     fill:${(props) => props.theme.background}
   }
 `;
 
 export const Comment = styled.div`
   margin-top: 10px;
   font-size: 11px;
-  /* color: ${(props) => (props.theme.description)}; */
   line-height: 13.6px;
   display: flex;
   word-break: keep-all;

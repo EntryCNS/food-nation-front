@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 import * as R from "./ReadReview.style";
-import * as C from "./Common.style";
+import * as C from "../Common.style";
 
-import ArrowSvg from "../../assets/image/review/arrow.svg";
-import Star from "../../assets/image/review/readStar.svg";
+import ArrowSvg from "../../../assets/image/review/arrow.svg";
+import Star from "../../../assets/image/review/readStar.svg";
 
 import { useRecoilState } from "recoil";
 import {
@@ -160,7 +160,7 @@ export default function ReadReview() {
         <R.NavContainer>
           <nav>
             <div onClick={() => changeDate(-1)}>
-              <ArrowSvg />
+              <ArrowSvg className="leftArrow"/>
             </div>
             <div>{year}</div>
             <div>.</div>

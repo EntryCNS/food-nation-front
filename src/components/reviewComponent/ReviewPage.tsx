@@ -1,6 +1,6 @@
 import React from "react";
-import ReadReview from "./ReadReview";
-import WriteReview from "./WriteReview";
+import ReadReview from "./readReview/ReadReview";
+import WriteReview from "./writeReview/WriteReview";
 
 import * as R from "./ReviewPage.style";
 
