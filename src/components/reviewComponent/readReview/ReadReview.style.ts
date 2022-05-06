@@ -134,7 +134,7 @@ export const StarContainer = styled.div`
   justify-content: space-between;
 
   .empty{
-     fill:${(props) => props.theme.background}
+    fill:${(props) => props.theme.background}
   }
 `;
 
@@ -145,3 +145,5 @@ export const Comment = styled.div`
   display: flex;
   word-break: keep-all;
 `;
+
+
