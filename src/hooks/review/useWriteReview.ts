@@ -25,13 +25,10 @@ const useWriteReview = () => {
     const today = new Date();
     const time = today.getHours() * 100 + today.getMinutes();
     if (time > 710 && time < 1230) {
-      console.log(0, "의 서버값");
       setSelectedButton(0);
     } else if (time > 1230 && time < 1920) {
-      console.log(1, "의 서버값");
       setSelectedButton(1);
     } else {
-      console.log(2, "의 서버값");
       setSelectedButton(2);
     }
   }, []);

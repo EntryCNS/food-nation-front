@@ -1,5 +1,4 @@
 import { useState,useEffect } from "react";
-
 import { useRecoilState } from "recoil";
 import {
   calendarYear,
@@ -9,7 +8,6 @@ import {
 import { recoilCalYear, recoilCalMonth } from "stores/calendar/calLocation";
 
 const useReadReview = () => {
-
 
   const [year, setYear] = useRecoilState(calendarYear);
   const [month, setMonth] = useRecoilState(calendarMonth);
@@ -36,13 +34,10 @@ const useReadReview = () => {
     const today = new Date();
     const time = today.getHours() * 100 + today.getMinutes();
     if (time > 710 && time < 1230) {
-      console.log(0, "의 서버값");
       setSelectedButton(0);
     } else if (time > 1230 && time < 1820) {
-      console.log(1, "의 서버값");
       setSelectedButton(1);
     } else {
-      console.log(2, "의 서버값");
       setSelectedButton(2);
     }
   }, []);
