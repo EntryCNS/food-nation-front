@@ -19,8 +19,6 @@ export const InnerContainer = styled.div`
   /* width:515px; */
   width: 525px;
   height: 313px;
-  /* background-color:seashell; */
-  /* box-sizing:border-box; */
   display: flex;
   flex-flow: row wrap;
   overflow: auto;
@@ -50,15 +48,11 @@ export const NavTemp = styled.div`
 export const NavContainer = styled.div`
   width: 500px;
   height: 50px;
-  /* height:fit-content; */
-  /* margin-top:13px; */
   padding-top: 5px;
   padding-left: 12px;
   padding-right: 24px;
 
-
   position: absolute;
-  /* background-color:rgba(0,0,0,0); */
 
   display: flex;
   flex-flow: row nowrap;
@@ -67,7 +61,6 @@ export const NavContainer = styled.div`
 
   user-select:none;
 
-  /* box-sizing:border; */
   nav {
     display: flex;
     flex-flow: row nowrap;
@@ -79,7 +72,9 @@ export const NavContainer = styled.div`
       margin-right: 17px;
       cursor: pointer;
       .leftArrow{
-        /* fill:white; */
+        path{
+          fill:${(props) => (props.theme.fontColor)};
+        }
       }
     }
     div:nth-child(3) {
@@ -98,6 +93,9 @@ export const NavContainer = styled.div`
       cursor: pointer;
       .rightArrow {
         transform: rotate(180deg);
+        path{
+          fill:${(props) => (props.theme.fontColor)};
+        }
       }
     }
   }
@@ -110,21 +108,16 @@ export const Temp = styled.div`
 `;
 
 export const CommentContainer = styled.div`
-  /* 높이는 테스트, 70=3개씩 들어가고, 110=2개씩*/
+  /* 높이는 테스트, 70=3개씩 들어가고, 110=2개씩 */
   /* min-height:70px;  */
   min-height: 100px;
   height: fit-content;
-  /* min-height:90px;  */
   /* width는 더 키우고 싶을 수 있어서 테스트 원래는 212 */
-  width: 212px;
-  /* width:222px; */
+  width: 215px;
 
-  /* background-color:blue; */
   box-shadow: 4px 4px 15px 0px rgba(0, 0, 0, 0.1);
   border-radius: 16px;
   margin: 15px;
-  /* margin-top:10px;
-    margin-bottom:10px; */
   padding: 20px;
 `;
 

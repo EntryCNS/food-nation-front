@@ -1,8 +1,8 @@
 import * as Cal from "./Calendar.style";
-
 import ArrowSvg from "../../../assets/image/review/arrow.svg";
-
 import useCalendar from "hooks/review/useCalendar";
+import { CalendarType } from "interface/review/calendar.type";
+
 
 export default function Calendar({
   year,
@@ -11,14 +11,7 @@ export default function Calendar({
   setMonth,
   date,
   setDate,
-}: {
-  year: number;
-  setYear: any;
-  month: number;
-  setMonth: any;
-  date: number;
-  setDate: any;
-}) {
+}: CalendarType) {
   // 캘린더에 띄울 영어
   const monthes: string[] = [
     "January",

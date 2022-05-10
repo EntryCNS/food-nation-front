@@ -42,7 +42,7 @@ const useWriteReview = () => {
     setStars(temp);
   }
 
-  function onchange(value: string) {
+  function reviewChange(value: string) {
     setReview(value);
   }
 
@@ -50,7 +50,7 @@ const useWriteReview = () => {
   const [reviewError, setReviewError] = useState(false);
 
   // 별이나 글이 없을 때 에러핸들링
-  function onClick() {
+  function tryReview() {
     if (stars[0] == 0 || review.length < 1) {
       setReviewError(true);
     } else {
@@ -76,9 +76,9 @@ const useWriteReview = () => {
       selectedButton,
       stars,
       paintStar,
-      onchange,
+      reviewChange,
       reviewError,
-      onClick
+      tryReview
   })
 }
 

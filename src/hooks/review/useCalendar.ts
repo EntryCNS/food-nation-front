@@ -2,23 +2,18 @@ import { useState,useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { recoilCalYear, recoilCalMonth } from "stores/calendar/calLocation";
 import { ThemeState } from "stores/themeAtom";
+import { CalendarType } from "interface/review/calendar.type";
 
 // 값 받고 활용
-const useReadReview = ({
+const useCalendar = ({
     year,
     setYear,
     month,
     setMonth,
     date,
     setDate,
-  }: {
-    year: number;
-    setYear: any;
-    month: number;
-    setMonth: any;
-    date: number;
-    setDate: any;
-  }) => {
+  }:CalendarType) => {
+  
   // 달력에 띄우기 위한 변수,
   // props로 들어오는 값과 독립적이다
   const [calYear, setCalYear] = useRecoilState(recoilCalYear);
@@ -26,32 +21,38 @@ const useReadReview = ({
   
   // 이번달 첫날의
   let currentMonthFirst: Date = new Date(calYear, calMonth, 1);
+  let cMFDate = currentMonthFirst.getDate();
+  let cMFDay = currentMonthFirst.getDay();
   // 이번달 마지막날
   let currentMonthLast: Date = new Date(calYear, calMonth + 1, 0);
+  let cMLDate = currentMonthLast.getDate();
+  let cMLDay = currentMonthLast.getDay();
   // 지난달 마지막날
   let previousMonthLast: Date = new Date(calYear, calMonth, 0);
+  let pMLDate = previousMonthLast.getDate()
+
   // 날짜 배열에 넣기
   let dayArray: number[] = [];
   // 달력 한 면의 색을 채워넣는 배열
   let colorArray: boolean[] = [];
 
   for (
-    let i = previousMonthLast.getDate() - (currentMonthFirst.getDay() - 1);
-    i <= previousMonthLast.getDate();
+    let i = pMLDate - (cMFDay - 1);
+    i <= pMLDate;
     i++
   ) {
     dayArray.push(i);
     colorArray.push(false);
   }
   for (
-    let i = currentMonthFirst.getDate();
-    i <= currentMonthLast.getDate();
+    let i = cMFDate;
+    i <= cMLDate;
     i++
   ) {
     dayArray.push(i);
     colorArray.push(true);
   }
-  for (let i = 1; i < 7 - currentMonthLast.getDay(); i++) {
+  for (let i = 1; i < 7 - cMLDay; i++) {
     dayArray.push(i);
     colorArray.push(false);
   }
@@ -75,15 +76,12 @@ const useReadReview = ({
     setCalYear(today.getFullYear());
     setCalMonth(today.getMonth());
   }, []);
-
+` `
   useEffect(() => {
     console.log("year", year);
     console.log("month", month);
     console.log("date", date);
   }, [year, month, date]);
-
-    // 선택된 날짜를 비교할 때 더해질 달
-    const [tempMonth, setTempMonth] = useState(0);
 
     function selectDay(idx: number) {
       // 날짜 선택시 날짜를 바꾸고 그 날짜의 정보를 가져옴
@@ -92,7 +90,7 @@ const useReadReview = ({
       // selectDay함수에서는 year,month,date를 calYear,calMonth를 사용하기 때문에 선택이 켈린더에 영향을 끼치지 않는다
   
       // 지난 달 선택
-      if (idx < currentMonthFirst.getDay()) {
+      if (idx < cMFDay) {
         if (calMonth == 0) {
           setYear(calYear - 1);
           setMonth(11);
@@ -101,14 +99,14 @@ const useReadReview = ({
           setMonth(calMonth - 1);
         }
         setDate(
-          previousMonthLast.getDate() - currentMonthFirst.getDay() + idx + 1
+          pMLDate - cMFDay + idx + 1
         );
   
         // 이번 달 선택
-      } else if (idx < currentMonthFirst.getDay() + currentMonthLast.getDate()) {
+      } else if (idx < cMFDay + cMLDate) {
         setYear(calYear);
         setMonth(calMonth);
-        setDate(idx - currentMonthFirst.getDay() + 1);
+        setDate(idx - cMFDay + 1);
   
         // 다음 달 선택
       } else {
@@ -120,7 +118,7 @@ const useReadReview = ({
           setMonth(calMonth + 1);
         }
         setDate(
-          idx - currentMonthFirst.getDay() - currentMonthLast.getDate() + 1
+          idx - cMFDay - cMLDate + 1
         );
       }
     }
@@ -133,10 +131,9 @@ const useReadReview = ({
     year,
     month,
     date,
-  ]: // tempMonth,
+  ]:
   number[]) {
     const cal = new Date(calYear, calMonth, calDate);
-    // const cal = new Date(calYear, calMonth - tempMonth, calDate);
     const select = new Date(year, month, date);
 
     if (
@@ -167,4 +164,4 @@ const useReadReview = ({
 }
 
 
-export default(useReadReview)
+export default(useCalendar)

@@ -22,9 +22,9 @@ export default function WriteReview() {
     selectedButton,
     stars,
     paintStar,
-    onchange,
+    reviewChange,
     reviewError,
-    onClick,
+    tryReview,
   } = useWriteReview();
 
   return (
@@ -64,14 +64,14 @@ export default function WriteReview() {
         </W.StarContainer>
         <W.CommentInputContainer>
           <W.CommentInput
-            onChange={(e) => onchange(e.target.value)}
+            onChange={(e) => reviewChange(e.target.value)}
             placeholder="급식에 대해 말해주세요"
           />
         </W.CommentInputContainer>
         {reviewError && (
           <W.ReviewError>*별점과 글 모두 작성해주세요</W.ReviewError>
         )}
-        <W.Button onClick={onClick}>리뷰쓰기</W.Button>
+        <W.Button onClick={tryReview}>리뷰쓰기</W.Button>
       </W.InnerContainer>
     </W.Container>
   );

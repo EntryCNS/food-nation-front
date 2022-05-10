@@ -8,6 +8,8 @@ import Star from "../../../assets/image/review/readStar.svg";
 
 import useReadReview from "hooks/review/useReadReview";
 
+import { ReviewType } from "interface/review/readReview.type";
+
 export default function ReadReview() {
   const [reviews, setReviews] = useState([
     {
@@ -66,12 +68,6 @@ export default function ReadReview() {
       makeStarArray,
       day
   } = useReadReview()
-
-  interface ReviewType {
-    id: number;
-    stars: number;
-    comment: string;
-  }
 
   return (
     <R.Container>

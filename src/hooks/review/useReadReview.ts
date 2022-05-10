@@ -7,6 +7,8 @@ import {
 } from "stores/review/selectedDate";
 import { recoilCalYear, recoilCalMonth } from "stores/calendar/calLocation";
 
+import { StarType } from "interface/review/readReview.type";
+
 const useReadReview = () => {
 
   const [year, setYear] = useRecoilState(calendarYear);
@@ -73,8 +75,8 @@ const useReadReview = () => {
     setDay(forSetDay.getDay());
   }, [year, month, date]);
 
-  function makeStarArray(starNum:number):{filled:boolean,idx:number}[]{
-    let starArray:{filled:boolean,idx:number}[] = []
+  function makeStarArray(starNum:number):StarType[]{
+    let starArray:StarType[] = []
     for (let i = 0;i<5;i++){
       if (i < starNum){
         starArray.push({
