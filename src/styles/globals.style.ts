@@ -5,12 +5,15 @@ const GlobalStyle = createGlobalStyle`
       ${reset}
       * {
         box-sizing: border-box;
+        color:${(props) => props.theme.fontColor};
+        transition:0.2s;
       }
       html{
         height:100%;
       }
       div{
         background-color:${(props) => props.theme.background};
+        
       }
       #__next{
         background-color:${(props) => props.theme.htmlBackground};
@@ -29,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
       }
       h1, h2, h3, h4, h5, h6{
         font-family:'Maven Pro', sans-serif;
-        color:${(props) => props.theme.title}
+        color:${(props) => props.theme.fontColor};
       }
       p{
         color:${(props) => props.theme.description}
