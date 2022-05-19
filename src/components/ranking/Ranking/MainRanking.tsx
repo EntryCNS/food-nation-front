@@ -1,7 +1,10 @@
 import * as Rk from "./MainRanking.style";
 import profileImage from "assets/image/profile.png";
 import Image from "next/image";
-import { useCallback, useEffect } from "react";
+import { useCallback } from "react";
+import { IRanking } from "../../../interface/ranking/IRanking";
+import useRanking from "hooks/useRanking";
+
 const data = [
   {
     name: "김영성",
@@ -31,37 +34,25 @@ const data = [
 ];
 
 const Ranking = () => {
-  const top3: any = [];
-  const other: any = [];
-
-  // const filterRank = useCallback(() => {
-  data.map((card, idx) => {
-    console.log("datamap");
-    idx < 3 ? top3.push(card) : other.push(card);
-  });
-  // }, [data]);
-
-  // useEffect(() => {
-  //   // filterRank();
-  // }, [data]);
+  const { top3, other } = useRanking(data);
 
   const RankingMap: Function = useCallback(() => {
-    const TopRanking = top3.map((d: any) => {
+    const TopRanking = top3.map((d: IRanking) => {
       return (
         <Rk.CardContainer key={d.rank}>
           <div className="profileImg">
             <Image src={profileImage} width={60} height={60} />
           </div>
-          <p className="name">{d.name}</p>
+          <p className="name whiteFont">{d.name}</p>
           <hr />
           <div className="mini">
             <label>
-              <p>기여도</p>
-              <p className="num">{d.contribute}</p>
+              <p className="whiteFont">기여도</p>
+              <p className="num whiteFont">{d.contribute}</p>
             </label>
             <label>
-              <p>랭킹</p>
-              <p className="rank">{d.rank}</p>
+              <p className="whiteFont">랭킹</p>
+              <p className="rank ">{d.rank}</p>
             </label>
           </div>
         </Rk.CardContainer>
@@ -71,23 +62,23 @@ const Ranking = () => {
   }, [data]);
 
   const SideRankingMap: Function = useCallback(() => {
-    const SideRanking = other.map((d: any) => {
+    const SideRanking = other.map((d: IRanking) => {
       return (
         <Rk.SideCardContainer key={d.rank}>
           <div className="right">
             <div className="profileImg">
               <Image src={profileImage} width={40} height={40} />
             </div>
-            <p className="name">{d.name}</p>
+            <p className="name whiteFont">{d.name}</p>
           </div>
           <hr />
           <div className="left">
             <label>
-              <p>기여도</p>
-              <p className="num">{d.contribute}</p>
+              <p className="whiteFont">기여도</p>
+              <p className="num whiteFont">{d.contribute}</p>
             </label>
             <label>
-              <p>랭킹</p>
+              <p className="whiteFont">랭킹</p>
               <p className="rank">{d.rank}</p>
             </label>
           </div>

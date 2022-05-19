@@ -6,6 +6,7 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 970px;
   height: 285px;
+  background-color: ${(props) => props.theme.htmlBackground};
 `;
 
 export const CardContainer = styled.div`
@@ -20,7 +21,6 @@ export const CardContainer = styled.div`
   line-height: 14px;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   padding-top: 40px;
   hr {
@@ -55,7 +55,10 @@ export const CardContainer = styled.div`
   }
   .rank {
     margin: 20px;
-    color: ${lightTheme.blue};
+    color: ${(props) => props.theme.blue};
+  }
+  .whiteFont {
+    color: ${(props) => props.theme.fontColor};
   }
 `;
 
@@ -63,6 +66,7 @@ export const SideWapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: ${(props) => props.theme.htmlBackground};
 `;
 
 export const SideCardContainer = styled.div`
@@ -75,6 +79,7 @@ export const SideCardContainer = styled.div`
   box-shadow: 4px 4px 15px rgba(0, 1, 1, 0.1);
   border-radius: 15px;
   display: flex;
+
   hr {
     margin-top: 24px;
     height: 70px;
@@ -108,9 +113,8 @@ export const SideCardContainer = styled.div`
     font-weight: 500;
   }
   .rank {
-    color: ${lightTheme.blue};
+    color: ${(props) => props.theme.blue};
     font-size: 11px;
-    /* text-align: center; */
   }
   .num,
   .rank {
@@ -121,5 +125,8 @@ export const SideCardContainer = styled.div`
   .right {
     border-radius: 15px;
     text-align: center;
+  }
+  .whiteFont {
+    color: ${(props) => props.theme.fontColor};
   }
 `;

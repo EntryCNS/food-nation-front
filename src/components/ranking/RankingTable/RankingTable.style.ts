@@ -3,10 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   margin-right: 70px;
-  /* width: 710px;
-  height: 403px; */
+  background-color: ${(props) => props.theme.htmlBackground};
 `;
 export const TableContainer = styled.div`
+  background-color: ${(props) => props.theme.background};
   font-family: "Roboto";
   font-style: normal;
   font-weight: 600;
@@ -34,16 +34,16 @@ export const TableContainer = styled.div`
     height: 0px;
     border: 1px solid #f4f4f4;
   }
-  .p {
+  .profileM {
     margin-left: 65px;
   }
-  .n {
+  .nameM {
     margin-left: 145px;
   }
-  .s {
+  .scoreM {
     margin-left: 135px;
   }
-  .r {
+  .rankingM {
     margin-left: 120px;
   }
   .table {
@@ -60,19 +60,23 @@ export const TableContainer = styled.div`
     align-items: center;
     justify-content: space-around;
   }
+
+  .tableText {
+    color: ${(props) => props.theme.fontColor};
+  }
   .table::-webkit-scrollbar {
     width: 15px;
   }
 
   .table::-webkit-scrollbar-thumb {
     height: 17%;
-    background: #e4e4e4;
+    background: ${(props) => props.theme.scrollBar};
     border-radius: 15px;
   }
 
   /* 스크롤바 뒷 배경 설정*/
   .table::-webkit-scrollbar-track {
-    background: #f4f4f4;
+    background-color: ${(props) => (props.theme.isDark ? "#333333" : "F4F4F4")};
     border-radius: 15px;
   }
   .ranking {

@@ -21,15 +21,15 @@ const MyRank = () => {
         <div className="profileImg">
           <Image src={profileImage} />
         </div>
-        <p className="name">{data[0].name}</p>
+        <p className="name whiteFont">{data[0].name}</p>
         <hr />
         <div className="mini">
           <label>
-            <p>기여도</p>
-            <p>{data[0].contribute}</p>
+            <p className="whiteFont">기여도</p>
+            <p className="whiteFont">{data[0].contribute}</p>
           </label>
           <label>
-            <p>내 랭킹</p>
+            <p className="whiteFont">내 랭킹</p>
             <p className="rank">{data[0].rank}</p>
           </label>
         </div>

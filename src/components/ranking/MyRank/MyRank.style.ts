@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { lightTheme } from "styles/theme";
+import { darkTheme, lightTheme } from "styles/theme";
 
 export const Container = styled.div`
   display: flex;
+  background-color: ${(props) => props.theme.htmlBackground};
 `;
 
 export const MyProfileContainer = styled.div`
@@ -13,7 +14,7 @@ export const MyProfileContainer = styled.div`
   line-height: 16px;
   width: 190px;
   height: 397px;
-  background: ${lightTheme.rankingGradient};
+  background: ${(props) => props.theme.gradient};
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   position: relative;
@@ -44,7 +45,6 @@ export const MyProfileContainer = styled.div`
     background-color: transparent;
   }
   .img {
-    /* position: relative; */
     background: transparent;
     margin: 0;
     padding: 0;
@@ -75,6 +75,9 @@ export const MyProfileContainer = styled.div`
     font-weight: 500;
   }
   .rank {
-    color: ${lightTheme.blue};
+    color: ${(props) => props.theme.blue};
+  }
+  .whiteFont {
+    color: ${(props) => props.theme.fontColor};
   }
 `;

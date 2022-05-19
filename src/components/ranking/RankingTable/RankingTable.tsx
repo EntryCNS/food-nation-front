@@ -52,10 +52,10 @@ const RankingTable = () => {
       <RT.TableContainer>
         <nav>
           <ul>
-            <li className="p">Profile</li>
-            <li className="n">Name</li>
-            <li className="s">Score</li>
-            <li className="r">Ranking</li>
+            <li className="profileM">Profile</li>
+            <li className="nameM">Name</li>
+            <li className="scroeM">Score</li>
+            <li className="rankingM">Ranking</li>
           </ul>
         </nav>
         <hr />
@@ -65,8 +65,8 @@ const RankingTable = () => {
               <div className="profileImg">
                 <Image src={profileImage} width={40} height={40} />
               </div>
-              <p>{d.name}</p>
-              <p>{d.contribute}</p>
+              <p className="tableText">{d.name}</p>
+              <p className="tableText">{d.contribute}</p>
               <p className="ranking">{d.rank}</p>
             </div>
           ))}
