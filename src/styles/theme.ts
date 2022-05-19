@@ -1,4 +1,5 @@
 export const lightTheme = {
+  isDark: false,
   fontColor: "#434343",
   description: "#646464",
   htmlBackground: "#FFFFFF",
@@ -15,6 +16,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+  isDark: true,
   fontColor: "#FFFFFF",
   description: "#333333",
   htmlBackground: "#181818",

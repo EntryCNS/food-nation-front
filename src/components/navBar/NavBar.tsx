@@ -59,7 +59,7 @@ const NavBar: React.FC = () => {
               </Link>
             </li>
             <li>
-              <Link href="#">
+              <Link href="/review">
                 <N.IMG selected={selectedNavBarElement.review}>
                   <Review className="img" />
                 </N.IMG>

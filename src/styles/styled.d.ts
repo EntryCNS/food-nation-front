@@ -2,6 +2,7 @@ import "styled-components";
 
 declare module "styled-components" {
   interface DefaultTheme {
+    isDark: boolean;
     fontColor: string;
     description: string;
     htmlBackground: string;

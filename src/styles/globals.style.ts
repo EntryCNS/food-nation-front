@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
         color:${(props) => props.theme.fontColor};
       }
       p{
-        color:${(props) => props.theme.description}
+        color:${(props) => props.theme.fontColor}
       }
 
       @media only screen and (max-width: 768px) {
