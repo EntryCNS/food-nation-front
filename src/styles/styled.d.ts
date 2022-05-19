@@ -2,6 +2,7 @@ import "styled-components";
 
 declare module "styled-components" {
     interface DefaultTheme {
+        isDark: boolean,
         fontColor: string,
         description: string,
         htmlBackground: string,
@@ -14,6 +15,6 @@ declare module "styled-components" {
         gradient: string,
         scrollBar: string,
         subGradient: string
-        border: string,
+        border: string
     }
 }
