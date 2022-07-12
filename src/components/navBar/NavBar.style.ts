@@ -7,11 +7,12 @@ interface styleProps {
 }
 
 export const Wrapper = styled.div`
-    position:relative;
+    position:sticky;
+    top:0px;
     width: 100px;
     height: 100vh;
     display:flex;
-    border-right: 1px solid #F4F4F4;
+    border-right: 1px solid ${(props) => props.theme.border};
     flex-direction:column;
     display:flex;
     align-items:center;
@@ -31,7 +32,7 @@ export const Navigate = styled.div`
 
     ul{
         display: flex;
-        height: 390px;
+        height: 464px;
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
@@ -46,16 +47,15 @@ export const Navigate = styled.div`
             justify-content:center;
             z-index: 2;
             transition: 0.5s;
-            cursor: pointer;
-
         }
     }
     
 `
 export const IMG = styled.a<styleProps>`
-    .img{
-        transition:2s;
-        path{
+.img{
+    cursor:pointer;
+    path{
+            transition:0.5s;
             fill:${(props) => props.theme.fontColor};
            ${(props) => props.selected && css`fill:#fff`};
             
@@ -91,7 +91,7 @@ export const DotIndicator = styled.div`
 export const LogoutBtn = styled.button`
     position:absolute;
     bottom: 61px;
-    left:39px;
+    left:36px;
     cursor:pointer;
 
     .img{
