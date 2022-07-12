@@ -9,7 +9,7 @@ import checkMenu from "assets/image/main/checkMenu.png";
 import applyMenu from "assets/image/main/applyMenu.png";
 import background from "assets/image/main/background.png";
 
-import { useTheme } from "util/hooks/useTheme";
+import { useTheme } from "hooks/useTheme";
 
 const user = [
   { name: "김영성", rank: 1 },
