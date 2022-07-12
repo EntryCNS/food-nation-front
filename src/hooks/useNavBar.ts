@@ -25,7 +25,7 @@ const useNavBar = () => {
             positionTop += gap;
             selectedNavBarElement.profile = true;
             break;
-        case '/addMenu':
+        case '/apply':
             positionTop += gap * 2;
             selectedNavBarElement.addMenu = true;
             break;

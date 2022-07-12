@@ -38,7 +38,7 @@ const NavBar: React.FC = () => {
               </Link>
             </li>
             <li>
-              <Link href="/addMenu">
+              <Link href="/apply">
                 <N.IMG selected={selectedNavBarElement.addMenu}>
                   <AddMenu className="img" />
                 </N.IMG>
