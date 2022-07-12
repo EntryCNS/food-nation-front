@@ -13,34 +13,35 @@ const useNavBar = () => {
         review: false,
     };
 
-    let positionTop: number;
+    let positionTop = 15;
+    const gap = 464 / 6;
 
     switch (router.pathname) {
         case '/':
-            positionTop = 10;
+            positionTop;
             selectedNavBarElement.home = true;
             break;
         case '/profile':
-            positionTop = 75;
+            positionTop += gap;
             selectedNavBarElement.profile = true;
             break;
         case '/addMenu':
-            positionTop = 140;
+            positionTop += gap * 2;
             selectedNavBarElement.addMenu = true;
             break;
         case '/checkMenu':
-            positionTop = 205;
+            positionTop += gap * 3;
             selectedNavBarElement.checkMenu = true;
         case '/ranking':
-            positionTop = 270;
+            positionTop += gap * 4;
             selectedNavBarElement.ranking = true;
             break;
         case '/review':
-            positionTop = 335;
+            positionTop += gap * 5;
             selectedNavBarElement.review = true;
             break;
         default:
-            positionTop = 10;
+            positionTop = 15;
             selectedNavBarElement.home = true;
             break;
     }

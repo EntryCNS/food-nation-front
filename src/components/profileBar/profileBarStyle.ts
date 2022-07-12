@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { lightTheme } from "styles/theme";
 
 const ProfileBarContainer = styled.div`
+  position:sticky;
+  top:0px;
   width: 302px;
   height: 100vh;
   display: inline-block;
-  position: relative;
-  background: ${lightTheme.gradient};
+  background: ${(props) => props.theme.gradient};
   .custom1 {
     background: none;
     position: absolute;

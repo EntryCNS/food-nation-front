@@ -1,4 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 급식의 민족이란?
+### 영양사와 학생들간의 쌍뱡향 소통 프로그램
+
+영양사 선생님과 학생들이 함께 만들어가는 급식
+
+## 기능
+학생
+ - 급식 신청
+ - 급식 리뷰
+ - 우리학교 급식 조회
+ - 랭킹
+ - 
+영양사
+  - 신청된 급식 수락,거절
+  - 리뷰 조회
+ ## 스택(front)
+ ts, nextjs, recoil, styled-components
 
 ## Getting Started
 
@@ -32,3 +48,6 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+___
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+___
