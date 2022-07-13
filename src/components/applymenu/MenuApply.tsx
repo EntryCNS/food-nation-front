@@ -2,8 +2,9 @@ import React, { memo, useCallback, useState } from "react";
 import { MenuContainer } from "components/applymenu/applyListStyle";
 import { NextPage } from "next";
 
-const kategorys = ["한식", "일식", "중식", "양식", "디저트", "패스트푸드"];
+const categorys = ["한식", "일식", "중식", "양식", "디저트", "패스트푸드"];
 
+// eslint-disable-next-line react/display-name
 const MenuApply: NextPage = React.memo(() => {
   const [check, setCheck] = useState(8);
   const [inputs, setInputs] = useState({
@@ -13,7 +14,7 @@ const MenuApply: NextPage = React.memo(() => {
   const { menuName, menuDes } = inputs;
 
   const onChange = useCallback(
-    (e: Event) => {
+    (e: any) => {
       const { value, name }: any = e.target;
       setInputs({
         ...inputs,
@@ -24,19 +25,19 @@ const MenuApply: NextPage = React.memo(() => {
     [inputs]
   );
 
-  const onReset = useCallback(() => {
-    setInputs({
-      menuName: "",
-      menuDes: "",
-    });
-  }, []);
+  // const onReset = useCallback(() => {
+  //   setInputs({
+  //     menuName: "",
+  //     menuDes: "",
+  //   });
+  // }, []);
 
   return (
     <MenuContainer>
       <h2 className="menu-container-title">급식 신청</h2>
       <div className="nav-container">
         <nav className="kategory-container">
-          {kategorys.map((i, index) => (
+          {categorys.map((i, index) => (
             <div
               className={`kategory${check === index ? "-blue" : "-nomal"}`}
               key={index}

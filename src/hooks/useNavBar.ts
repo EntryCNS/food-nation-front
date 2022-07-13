@@ -15,6 +15,7 @@ const useNavBar = () => {
 
     let positionTop = 15;
     const gap = 464 / 6;
+    console.log(router.pathname);
 
     switch (router.pathname) {
         case '/':
@@ -25,13 +26,14 @@ const useNavBar = () => {
             positionTop += gap;
             selectedNavBarElement.profile = true;
             break;
-        case '/addMenu':
+        case '/apply':
             positionTop += gap * 2;
             selectedNavBarElement.addMenu = true;
             break;
-        case '/checkMenu':
+        case '/status':
             positionTop += gap * 3;
             selectedNavBarElement.checkMenu = true;
+            break;
         case '/ranking':
             positionTop += gap * 4;
             selectedNavBarElement.ranking = true;

@@ -29,12 +29,10 @@ export const InnerContainer = styled.div`
   ::-webkit-scrollbar-thumb {
     height: 17%;
     background: ${(props) => (props.theme.scrollBar)};
-    /* background: #e4e4e4; */
     border-radius: 15px;
   }
   ::-webkit-scrollbar-track {
     background: ${(props) => (props.theme.border)};
-    /* background: #f4f4f4; */
     border-radius: 15px;
   }
 `;

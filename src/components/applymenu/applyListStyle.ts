@@ -167,7 +167,7 @@ export const MenuContainer = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: ${lightTheme.title};
+    color: ${lightTheme.fontColor};
     margin-top: 40px;
     margin-left: 40px;
   }
