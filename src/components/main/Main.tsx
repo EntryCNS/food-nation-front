@@ -1,5 +1,6 @@
 import React from "react";
 import * as M from "./Main.style";
+import Link from "next/link";
 import Image from "next/image";
 import Menu from "components/common/menu";
 import Arrow from "../../assets/image/common/arrow.svg";
@@ -8,6 +9,7 @@ import review from "assets/image/main/review.png";
 import checkMenu from "assets/image/main/checkMenu.png";
 import applyMenu from "assets/image/main/applyMenu.png";
 import background from "assets/image/main/background.png";
+
 
 import { useTheme } from "hooks/useTheme";
 
@@ -22,6 +24,8 @@ const Main = () => {
   return (
     <M.Wrapper>
       <Menu />
+
+      <Link href="#">
       <M.RankingContainer>
         <h1>랭킹</h1>
         <Arrow id="arrow" fill="red" />
@@ -37,6 +41,9 @@ const Main = () => {
           ))}
         </M.RankingBox>
       </M.RankingContainer>
+      </Link>
+
+      <Link href="#">
       <M.MenuCheckBar>
         <h1>꿈이 이루어진다</h1>
         <Arrow id="arrow" />
@@ -45,7 +52,9 @@ const Main = () => {
           <Image src={checkMenu} />
         </M.IMGBox>
       </M.MenuCheckBar>
+      </Link>
 
+      <Link href="/apply">
       <M.ApplyMenuBar>
         <h1>급식 신청</h1>
         <Arrow id="arrow" />
@@ -54,6 +63,7 @@ const Main = () => {
           <Image src={applyMenu} width={292} height={223} />
         </M.IMGBox>
       </M.ApplyMenuBar>
+      </Link>
 
       <M.OtherCotainer>
         <M.darkModeBtn onClick={handleDarkMode} darkMode={darkMode}>
@@ -61,6 +71,7 @@ const Main = () => {
           <h1>다크모드</h1>
         </M.darkModeBtn>
 
+        <Link href="/review">
         <M.ReviewBar>
           <h1>리뷰 쓰기</h1>
           <Arrow id="arrow" />
@@ -69,6 +80,7 @@ const Main = () => {
             <Image src={review} id="review" />
           </M.IMGBox>
         </M.ReviewBar>
+        </Link>
       </M.OtherCotainer>
     </M.Wrapper>
   );

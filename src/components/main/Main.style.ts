@@ -6,6 +6,7 @@ interface styleProps {
     marginTop?: number;
 }
 
+
 export const Wrapper = styled.div`
     position:relative;
     background-color:${(props) => props.theme.htmlBackground};
@@ -43,7 +44,11 @@ export const Wrapper = styled.div`
    
 `
 
-export const RankingContainer = styled.div`
+const ContainerFrame = styled.div`
+    cursor:pointer;
+`
+
+export const RankingContainer = styled(ContainerFrame)`
     position:relative;
     width:330px;
     padding:40px;
@@ -105,7 +110,7 @@ export const RankingNumber = styled.div`
     line-height: 12px;
 `
 
-export const MenuCheckBar = styled.div`
+export const MenuCheckBar = styled(ContainerFrame)`
     position:relative;
     width: 305px;
     height: 358px;
@@ -120,7 +125,7 @@ export const MenuCheckBar = styled.div`
     }
 `
 
-export const ApplyMenuBar = styled.div`
+export const ApplyMenuBar = styled(ContainerFrame)`
     width:332px;
     height:358px;
     position:relative;
@@ -172,7 +177,7 @@ export const darkModeBtn = styled.button<styleProps>`
     }
 `
 
-export const ReviewBar = styled.div`
+export const ReviewBar = styled(ContainerFrame)`
     width: 193px;
     height: 204px;
     position:relative;
