@@ -1,8 +1,7 @@
 import styled from "styled-components";
+import { lightTheme } from "styles/theme";
 
 export const ListContainer = styled.div`
-  width: 100%;
-
   @media screen and (min-width: 1300px) {
     width: 600px;
     height: 738px;
