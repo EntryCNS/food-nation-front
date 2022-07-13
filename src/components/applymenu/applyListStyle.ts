@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import { lightTheme } from "styles/theme";
 
 export const ListContainer = styled.div`
+  width: 100%;
+
   @media screen and (min-width: 1300px) {
     width: 600px;
     height: 738px;
     position: relative;
-    background-color: ${lightTheme.background};
+    background: ${(props) => props.theme.background};
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
     .name {
@@ -14,6 +15,7 @@ export const ListContainer = styled.div`
       padding-left: 40px;
       font-size: 16px;
       font-weight: 700;
+      color: ${(props) => props.theme.fontColor};
       /* font-family: "Roboto"; */
     }
     .nav-container {
@@ -23,13 +25,14 @@ export const ListContainer = styled.div`
       flex-wrap: nowrap;
       margin-left: 40px;
       flex-grow: 1;
+      background: ${(props) => props.theme.background};
       .kategory-nomal {
         cursor: pointer;
         margin-top: 40px;
         margin-right: 6px;
         width: 60px;
         height: 28px;
-        background: ${lightTheme.background};
+        background: ${(props) => props.theme.background};
         box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
         border-radius: 15px;
         font-family: "Roboto";
@@ -39,7 +42,7 @@ export const ListContainer = styled.div`
         line-height: 14px;
         display: flex;
         align-items: center;
-        color: ${lightTheme.gray};
+        color: ${(props) => props.theme.fontColor};
         justify-content: center;
         transition: 0.2s;
         &:last-child {
@@ -51,7 +54,7 @@ export const ListContainer = styled.div`
         margin-right: 6px;
         width: 60px;
         height: 28px;
-        background: ${lightTheme.blue};
+        background: ${(props) => props.theme.blue};
         box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
         border-radius: 15px;
         font-family: "Roboto";
@@ -61,7 +64,7 @@ export const ListContainer = styled.div`
         line-height: 14px;
         display: flex;
         align-items: center;
-        color: ${lightTheme.background};
+        color: ${(props) => props.theme.fontColor};
         justify-content: center;
         transition: 0.2s;
         &:last-child {
@@ -76,13 +79,14 @@ export const ListContainer = styled.div`
       overflow-y: scroll;
       display: flex;
       flex-wrap: wrap;
+      background: ${(props) => props.theme.background};
       .menus {
         margin-left: 10px;
         margin-right: 30px;
         margin-bottom: 30px;
         width: 220px;
         height: 130px;
-        background: ${lightTheme.background};
+        background: ${(props) => props.theme.background};
         box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
         border-radius: 15px;
         position: relative;
@@ -93,7 +97,7 @@ export const ListContainer = styled.div`
           font-size: 11px;
           line-height: 13px;
           letter-spacing: 0.02em;
-          color: ${lightTheme.gray};
+          color: ${(props) => props.theme.fontColor};
         }
         .menus-description {
           font-weight: 400;
@@ -104,12 +108,15 @@ export const ListContainer = styled.div`
           height: 38px;
           margin-left: 24px;
           margin-top: 12px;
-          color: ${lightTheme.gray};
+          background: ${(props) => props.theme.background};
+          color: ${(props) => props.theme.fontColor};
         }
         .menus-footer {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          background: ${(props) => props.theme.background};
+          color: ${(props) => props.theme.fontColor};
           .menus-tags {
             /* margin-top: 8px; */
             margin-left: 24px;
@@ -117,6 +124,13 @@ export const ListContainer = styled.div`
             line-height: 12px;
             letter-spacing: 0.02em;
             color: #939393;
+            background: ${(props) => props.theme.background};
+            color: ${(props) => props.theme.fontColor};
+
+            div {
+              background: ${(props) => props.theme.background};
+              color: ${(props) => props.theme.fontColor};
+            }
           }
           .menus-good {
             margin-right: 24px;
@@ -127,6 +141,8 @@ export const ListContainer = styled.div`
             color: #939393;
             display: flex;
             align-items: center;
+            background: ${(props) => props.theme.background};
+            color: ${(props) => props.theme.fontColor};
           }
         }
         .menus-check {
@@ -143,13 +159,13 @@ export const ListContainer = styled.div`
 
     .menu-container::-webkit-scrollbar-thumb {
       height: 17%;
-      background: #e4e4e4;
+      background: ${(props) => props.theme.scrollBar};
       border-radius: 15px;
     }
 
     /* 스크롤바 뒷 배경 설정*/
     .menu-container::-webkit-scrollbar-track {
-      background: #f4f4f4;
+      background: ${(props) => props.theme.description};
       border-radius: 15px;
     }
   }
@@ -158,7 +174,7 @@ export const ListContainer = styled.div`
 export const MenuContainer = styled.div`
   width: 300px;
   height: 738px;
-  background: ${lightTheme.background};
+  background: ${(props) => props.theme.background};
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
   position: relative;
@@ -167,11 +183,13 @@ export const MenuContainer = styled.div`
     font-weight: 700;
     font-size: 16px;
     line-height: 19px;
-    color: ${lightTheme.title};
+    color: ${(props) => props.theme.fontColor};
     margin-top: 40px;
     margin-left: 40px;
   }
   .nav-container {
+    background: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.fontColor};
     .kategory-container {
       display: flex;
       /* justify-content: space-between; */
@@ -186,7 +204,7 @@ export const MenuContainer = styled.div`
       margin-bottom: 14px;
       width: 60px;
       height: 28px;
-      background: ${lightTheme.background};
+      background: ${(props) => props.theme.background};
       box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
       border-radius: 15px;
       font-family: "Roboto";
@@ -196,7 +214,7 @@ export const MenuContainer = styled.div`
       line-height: 14px;
       display: flex;
       align-items: center;
-      color: ${lightTheme.gray};
+      color: ${(props) => props.theme.fontColor};
       justify-content: center;
       transition: 0.2s;
       &:last-child {
@@ -208,7 +226,7 @@ export const MenuContainer = styled.div`
       margin-bottom: 14px;
       width: 60px;
       height: 28px;
-      background: ${lightTheme.blue};
+      background: ${(props) => props.theme.fontColor};
       box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
       border-radius: 15px;
       font-family: "Roboto";
@@ -218,7 +236,7 @@ export const MenuContainer = styled.div`
       line-height: 14px;
       display: flex;
       align-items: center;
-      color: ${lightTheme.background};
+      color: ${(props) => props.theme.fontColor};
       justify-content: center;
       transition: 0.2s;
       &:last-child {
@@ -229,7 +247,7 @@ export const MenuContainer = styled.div`
   .menu-names {
     width: 220px;
     height: 70px;
-    background: ${lightTheme.background};
+    background: ${(props) => props.theme.background};
     border: 1px solid #e4e4e4;
     border-radius: 15px;
     margin-left: 40px;
@@ -245,7 +263,7 @@ export const MenuContainer = styled.div`
     color: #e4e4e4;
   }
   .menu-description {
-    background: #ffffff;
+    background: ${(props) => props.theme.background};
     border: 1px solid #e4e4e4;
     box-sizing: border-box;
     border-radius: 15px;
@@ -272,7 +290,7 @@ export const MenuContainer = styled.div`
     background: #1556f7;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
-    color: ${lightTheme.background};
+    color: ${(props) => props.theme.fontColor};
     margin: 40px;
     font-family: "Roboto";
     font-style: normal;
