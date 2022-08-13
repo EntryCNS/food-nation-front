@@ -11,14 +11,6 @@ export const Wrapper = styled.div`
     >h1{
         font-weight: 700;
     }
-
-    >.imgContainer{
-        position:absolute;
-        bottom:0px;
-        right:0;
-        z-index: 1;
-        background-color:transparent;
-    }
 `
 export const Container = styled.div`
     position:relative;
@@ -28,7 +20,9 @@ export const Container = styled.div`
     display:flex;
     flex-direction: column;
     overflow: auto;
+    background-color:transparent;
     gap:22px;
+
     ::-webkit-scrollbar {
     width: 15px;
   }
@@ -41,7 +35,14 @@ export const Container = styled.div`
     background: ${(props) => (props.theme.border)};
     border-radius: 15px;
   }
-
+  
+  >.imgContainer{
+        position:sticky;
+        bottom:0px;
+        left:20px;
+        z-index: 1;
+        background-color:transparent;
+    }
 `
 
 export const ItemBox = styled.div`
@@ -51,10 +52,13 @@ export const ItemBox = styled.div`
     gap:10px;
     flex-direction:column;
     justify-content:space-between;
-    border-bottom:1px solid ${(props) => props.theme.description};
+    border-bottom:1px solid ${(props) => props.theme.border};
 
-    >div{
+    .voteContainer{
         display:flex;
+        width:50px;
+        align-items:center;
+        justify-content:space-between;
     }
     >.head{
         display:flex;
@@ -72,7 +76,7 @@ export const ItemBox = styled.div`
         color:${(props) => props.theme.blue};
     }
     #desc{
-        color:${(props) => props.theme.description};
+        color:${(props) => props.theme.fontColor};
     }
     #tag{
         color:${(props) => props.theme.gray};

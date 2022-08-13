@@ -64,7 +64,7 @@ const AcceptList = () => {
               <p id="desc">{item.des}</p>
               <div className="foot">
                 <p id="tag">#{item.tag}</p>
-                <div>
+                <div className="voteContainer">
                   <p id="vote">{item.vote}</p>
                   <Heart />
                 </div>
@@ -74,7 +74,7 @@ const AcceptList = () => {
         ))}
       </Container>
       <div className="imgContainer">
-        <Image src={acceptBack} id="backImg" />
+        {/* <Image src={acceptBack} id="backImg" alt="img" /> */}
       </div>
     </Wrapper>
   );
