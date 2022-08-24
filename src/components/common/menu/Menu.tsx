@@ -14,7 +14,7 @@ const Menu = () => {
       <M.DateBox>
         <Arrow id="left" className="svg" />
         <M.Date>0000 . 00 . 00 (일)</M.Date>
-        <Calendar  id="calender" className="svg" />
+        <Calendar  id="calender" className="svg"/>
         <Arrow id="right" className="svg" />
 
       </M.DateBox>
