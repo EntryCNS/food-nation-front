@@ -1,1 +1,1 @@
-export {default} from "./ModalFrame"
+export {default} from "./Modal"

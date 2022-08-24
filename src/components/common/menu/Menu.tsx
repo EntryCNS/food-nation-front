@@ -1,50 +1,87 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import * as M from "./Menu.style";
+
+import Calendar from "components/common/calendar";
+
 import Arrow from "../../../assets/image/common/arrow.svg";
-import Calendar from "../../../assets/image/common/calendar.svg";
+import CalendarSvg from "../../../assets/image/common/calendar.svg";
 import Breakfast from "../../../assets/image/menu/breakfast.svg";
 import lunch from "assets/image/menu/lunch.png";
 import dinner from "assets/image/menu/dinner.png";
+import Modal from "components/common/modal";
 
 const Menu = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  function openModal() {
+    setModalOpen(true);
+  }
+  function closeModal() {
+    setModalOpen(false);
+  }
+
+  const [year,setYear] = useState<number | undefined>();
+  const [month,setMonth] = useState<number | undefined>()
+  const [date,setDate] = useState<number | undefined>()
 
   return (
-    <M.Container>
-      <M.DateBox>
-        <Arrow id="left" className="svg" />
-        <M.Date>0000 . 00 . 00 (일)</M.Date>
-        <Calendar  id="calender" className="svg"/>
-        <Arrow id="right" className="svg" />
+      <M.Container>
 
-      </M.DateBox>
+      {modalOpen &&
+        <Modal
+          onClose={closeModal}
+          name="calendarModal"
+          maskCloseable={true}
+          visible={true}
+        >
+          <Calendar
+            year={year}
+            setYear={setYear}
+            month={month}
+            setMonth={setMonth}
+            date={date}
+            setDate={setDate}
+          />
+        </Modal>
+      }
 
-      <M.MenuBox>
-        <M.MealBox>
-          <Breakfast />
-          <p>
-            쇠고기버섯죽, 어니언베이글/크림치즈, *샐러드바/드레싱, 나박물김치,
-            오레오오즈+우유
-          </p>
-        </M.MealBox>
+        <M.DateBox>
+          <Arrow id="left" className="svg" />
+          <M.Date>{year+" . "+month+" . "+date}</M.Date>
+          {/* <M.Date>0000 . 00 . 00 (일)</M.Date> */}
+          <div onClick={openModal}>
+            <CalendarSvg id="calender" className="svg" />
+          </div>
+          <Arrow id="right" className="svg" />
+        </M.DateBox>
 
-        <M.MealBox>
-          <Image src={lunch} width={32} height={32} />
-          <p>
-            매콤로제해물파스타, *브리오슈싸이버거, 양송이크림스프/크루통,
-            모듬야채피클, 감자튀김/케첩
-          </p>
-        </M.MealBox>
+        <M.MenuBox>
+          <M.MealBox>
+            <Breakfast />
+            <p>
+              쇠고기버섯죽, 어니언베이글/크림치즈, *샐러드바/드레싱, 나박물김치,
+              오레오오즈+우유
+            </p>
+          </M.MealBox>
 
-        <M.MealBox>
-          <Image src={dinner} width={32} height={32} />
-          <p>
-            *발아현미밥, 쇠고기미역국, 햄감자채볶음, *바싹고추장불고기,
-            깻잎김치, *딸기요거트케이크
-          </p>
-        </M.MealBox>
-      </M.MenuBox>
-    </M.Container>
+          <M.MealBox>
+            <Image src={lunch} width={32} height={32} />
+            <p>
+              매콤로제해물파스타, *브리오슈싸이버거, 양송이크림스프/크루통,
+              모듬야채피클, 감자튀김/케첩
+            </p>
+          </M.MealBox>
+
+          <M.MealBox>
+            <Image src={dinner} width={32} height={32} />
+            <p>
+              *발아현미밥, 쇠고기미역국, 햄감자채볶음, *바싹고추장불고기,
+              깻잎김치, *딸기요거트케이크
+            </p>
+          </M.MealBox>
+        </M.MenuBox>
+      </M.Container>
   );
 };
 

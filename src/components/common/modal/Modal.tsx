@@ -14,39 +14,42 @@ const Modal = ({
   onClose: () => void;
   maskCloseable: boolean;
   visible: boolean;
-  children: Component;
+  children: React.ReactNode;
 }) => {
-    
-  useEffect(() => {
-    document.body.style.cssText = `
-        position:fixed;
-        top:-${window.scrollY}px`;
-    return () => {
-      const scrollY = document.body.style.top;
-      document.body.style.cssText = ``;
-      window.scrollTo(0, parseInt(scrollY || "0") * -1);
-    };
-  }, []);
+  // useEffect(() => {
+  //   document.body.style.cssText = `
+  //       position:fixed;
+  //       top:-${window.scrollY}px`;
+  //   return () => {
+  //     const scrollY = document.body.style.top;
+  //     document.body.style.cssText = ``;
+  //     window.scrollTo(0, parseInt(scrollY || "0") * -1);
+  //   };
+  // }, []);
 
-  const onMaskClick = (e :React.MouseEvent<HTMLDivElement>) => {
+  // const onMaskClick = (e: Event) => {
+  const onMaskClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
   return (
-    <Portal elementId="modal-root">
+    // <Portal elementId="modal-root">
+    <>
       <M.ModalOverlay visible={visible} />
       <M.ModalWrapper
         visible={visible}
         className={name}
         onClick={maskCloseable ? onMaskClick : undefined}
+        tabIndex={-1}
       >
-        <M.ModalInner  className="modal-inner">
+        <M.ModalInner className="modal-inner" tabIndex={0}>
           {children}
         </M.ModalInner>
       </M.ModalWrapper>
-    </Portal>
+    </>
+    // </Portal>
   );
 };
 
