@@ -7,6 +7,10 @@ export const Container = styled.div`
     border-radius:15px;
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.1);
     padding-left: 50px; 
+    >#loading{
+        margin-top:100px;
+        text-align:center
+    }
 `
 
 export const DateBox = styled.div`
@@ -57,7 +61,7 @@ export const MealBox = styled.div`
         font-family: 'Roboto';
         font-style: normal;
         font-weight: 500;
-        font-size: 11px;
+        font-size: 14px;
         line-height: 20px;
         color:${(props) => props.theme.fontColor};
     }
