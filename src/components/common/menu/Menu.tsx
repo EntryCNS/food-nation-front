@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import * as M from "./Menu.style";
-
-import Calendar from "components/common/calendar";
-
 import Arrow from "../../../assets/image/common/arrow.svg";
 import CalendarSvg from "../../../assets/image/common/calendar.svg";
 import Breakfast from "../../../assets/image/menu/breakfast.svg";
 import lunch from "assets/image/menu/lunch.png";
 import dinner from "assets/image/menu/dinner.png";
-import Modal from "components/common/modal";
 
 const Menu = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -21,31 +17,8 @@ const Menu = () => {
     setModalOpen(false);
   }
 
-  const [year,setYear] = useState<number>(0)
-  const [month,setMonth] = useState<number>(0)
-  const [date,setDate] = useState<number>(0)
-
   return (
       <M.Container>
-      {modalOpen &&
-        <Modal
-          onClose={closeModal}
-          name="calendarModal"
-          maskCloseable={true}
-          visible={true}
-        >
-          {/* <div>ㅎㅇ</div> */}
-          <Calendar
-            year={year}
-            setYear={setYear}
-            month={month}
-            setMonth={setMonth}
-            date={date}
-            setDate={setDate}
-          />
-        </Modal>
-      }
-
         <M.DateBox>
           <Arrow id="left" className="svg" />
           <M.Date>0000 . 00 . 00 (일)</M.Date>
