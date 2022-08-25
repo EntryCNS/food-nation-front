@@ -16,7 +16,7 @@ const Menu = ({ isCalander }: props) => {
   const { planner, changeDate, year, month, date } = useMenu();
   const today = new Date(year, month, date);
   const day = ["일", "월", "화", "수", "목", "금", "토"];
-  const mealPlanners = ["조식", "중식", "석식"];
+  const mealPlanner = ["조식", "중식", "석식"];
   const imgArray = ["", lunch, dinner];
 
   return (
