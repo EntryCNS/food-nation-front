@@ -1,10 +1,10 @@
 import { SetterOrUpdater } from "recoil";
 
 export interface CalendarType{
-    year:number | undefined,
-    setYear:SetterOrUpdater<number | undefined>,
-    month:number | undefined,
-    setMonth:SetterOrUpdater<number | undefined>,
-    date:number | undefined,
-    setDate:SetterOrUpdater<number | undefined>,
+    year:number,
+    setYear:SetterOrUpdater<number>,
+    month:number,
+    setMonth:SetterOrUpdater<number>,
+    date:number,
+    setDate:SetterOrUpdater<number>,
 }

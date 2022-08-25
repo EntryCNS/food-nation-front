@@ -21,13 +21,12 @@ const Menu = () => {
     setModalOpen(false);
   }
 
-  const [year,setYear] = useState<number | undefined>();
-  const [month,setMonth] = useState<number | undefined>()
-  const [date,setDate] = useState<number | undefined>()
+  const [year,setYear] = useState<number>(0)
+  const [month,setMonth] = useState<number>(0)
+  const [date,setDate] = useState<number>(0)
 
   return (
       <M.Container>
-
       {modalOpen &&
         <Modal
           onClose={closeModal}
@@ -35,6 +34,7 @@ const Menu = () => {
           maskCloseable={true}
           visible={true}
         >
+          {/* <div>ㅎㅇ</div> */}
           <Calendar
             year={year}
             setYear={setYear}
@@ -48,8 +48,7 @@ const Menu = () => {
 
         <M.DateBox>
           <Arrow id="left" className="svg" />
-          <M.Date>{year+" . "+month+" . "+date}</M.Date>
-          {/* <M.Date>0000 . 00 . 00 (일)</M.Date> */}
+          <M.Date>0000 . 00 . 00 (일)</M.Date>
           <div onClick={openModal}>
             <CalendarSvg id="calender" className="svg" />
           </div>

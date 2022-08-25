@@ -35,8 +35,7 @@ const Modal = ({
   };
 
   return (
-    // <Portal elementId="modal-root">
-    <>
+    <Portal elementId="modal-root">
       <M.ModalOverlay visible={visible} />
       <M.ModalWrapper
         visible={visible}
@@ -48,8 +47,7 @@ const Modal = ({
           {children}
         </M.ModalInner>
       </M.ModalWrapper>
-    </>
-    // </Portal>
+    </Portal>
   );
 };
 
