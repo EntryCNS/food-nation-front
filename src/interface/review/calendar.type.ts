@@ -7,5 +7,4 @@ export interface CalendarType{
     setMonth:SetterOrUpdater<number>,
     date:number,
     setDate:SetterOrUpdater<number>,
-
 }

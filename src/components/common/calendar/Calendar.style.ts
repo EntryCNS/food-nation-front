@@ -1,8 +1,8 @@
 import styled, { css } from "styled-components";
 
 export const CalendarContainer = styled.div`
-  /* width:214px; */
-  /* height:219px; */
+  /* width:214px;
+  height:219px; */
   width: 225.73px;
   height: 231px;
   font-weight: bold;

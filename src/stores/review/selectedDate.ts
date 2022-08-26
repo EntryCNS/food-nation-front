@@ -9,26 +9,16 @@ interface DateType {
     day?:number;
 }
 
-// const calendarDate = atom<DateType>({
-//     key:"calendarDate",
-//     default:{
-//         year:0,
-//         month:0,
-//         date:0,
-//         day:0
-//     }
-// })
-
 const calendarYear = atom<number>({
-    key:"calendarYear",
+    key:"GlobalCalendarYear",
     default:0
 })
 const calendarMonth = atom<number>({
-    key:"calednarMonth",
+    key:"GlobalCalednarMonth",
     default:0
 })
 const calendarDate = atom<number>({
-    key:"calendarDate",
+    key:"GlobalCalendarDate",
     default:0
 })
 
