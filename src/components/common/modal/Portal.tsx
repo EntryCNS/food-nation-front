@@ -11,6 +11,3 @@ function Portal({ children, elementId }:{children:React.ReactNode, elementId:str
 }
 
 export default Portal
-
-// 이거 어케함?
-// 날짜 타입 문제
