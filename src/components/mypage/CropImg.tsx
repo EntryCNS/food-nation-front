@@ -1,131 +1,144 @@
-import React, { useState, useCallback, useRef } from "react";
-import Cropper, { Area } from "react-easy-crop";
-import styled from "styled-components";
+import React, {
+  useState,
+  useCallback,
+  useRef,
+  useEffect,
+  ClassAttributes,
+} from "react";
+import Cropper from "react-easy-crop";
+import * as C from "./CropImg.style";
 import Image from "next/image";
-import profileImgG from "../../assets/image/profileImgG.png";
-import btnImg from "../../assets/image/buttonImg.png";
-
-const CropContainer = styled.div`
-  width: 400px;
-  display: flex;
-  position: relative;
-  justify-content: center;
-  .dontshow {
-    display: none;
-  }
-  input[type="file"]::file-selector-button {
-    /* padding: 0;
-    margin: 0; */
-
-    border-radius: 25px;
-    background-position: center;
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    border: none;
-    background-color: white;
-    font-size: 0;
-    background-image: url(${btnImg});
-  }
-  input[type="file"] {
-    z-index: 333;
-    background-color: white;
-    position: absolute;
-    bottom: 30px;
-    width: 60px;
-    height: 60px;
-    right: 100px;
-    border-radius: 50%;
-    font-size: 0;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-
-  #source {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  .imgDiv {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  .reactEasyCrop_CropArea {
-    background: transparent;
-  }
-`;
+import ProfileImg from "../../assets/image/mypage/CropSample.png";
+import buttonSVG from "../../assets/image/mypage/buttonSVG";
 
 type ClassNameT = string | undefined | Boolean;
 
 interface imgT {
   staticImg: StaticImageData | string;
+  prevStaticImg: StaticImageData | string;
   stringImg: string | undefined;
+  prevStringImg: string | undefined;
+}
+
+interface cropArea {
+  width: number;
+  height: number;
+  x: number;
+  y: number;
 }
 
 const CropImg = () => {
-  const canvasRef = useRef();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [zoom, setZoom] = useState(1);
   const [imgFile, setImgFile] = useState<imgT>({
-    staticImg: profileImgG,
+    staticImg: ProfileImg,
+    prevStringImg: "",
     stringImg: "",
+    prevStaticImg: ProfileImg,
   });
 
-  const [croppedAreaPixels, setCroppedAreaPixels] = useState({
-    width: 0,
-    height: 0,
-    x: 0,
-    y: 0,
+  const defaultArea: cropArea = { height: 0, width: 0, x: 0, y: 0 };
+
+  const [cropAreaInfo, setCropAreaInfo] = useState({
+    stateCroppedArea: defaultArea,
+    stateCroppedAreaPixels: defaultArea,
+    prevCroppedArea: defaultArea,
+    prevCroppedAreaPixels: defaultArea,
   });
 
-  const [choseFile, setChoseFile] = useState<ClassNameT>(false);
-  const [dontShowDefault, setDontShowDefault] = useState<ClassNameT>(false);
+  const [choseFile, setChoseFile] = useState<ClassNameT>("");
+  const [dontShowDefault, setDontShowDefault] = useState<ClassNameT>("");
   const [dontShowCanvas, setDontShowCanvas] = useState<ClassNameT>(true);
-  const [changeBtn, setChangeBtn] = useState<ClassNameT>(false);
+  const [changeBtn, setChangeBtn] = useState<ClassNameT>("");
   const [confirmBtn, setConfirmBtn] = useState<ClassNameT>(true);
+
+  //파일을 선택 했을 때만 이미지 크롭으로 넘어가게 하는 함수
+  const uploadFile = (e: any) => {
+    e.target.files.length == 1 && chooseImg(e);
+  };
 
   const chooseImg = (e: any) => {
     setDontShowDefault(true);
     setDontShowCanvas(true);
     setChoseFile(true);
     setChangeBtn(true);
-    setConfirmBtn(false);
+    setConfirmBtn("");
+
     setImgFile((prevState) => ({
       ...prevState,
+      prevStaticImg: prevState.staticImg,
+      prevStringImg: prevState.stringImg,
       staticImg: URL.createObjectURL(e.target.files[0]),
       stringImg: URL.createObjectURL(e.target.files[0]),
     }));
   };
 
-  const saveFileImg = (e: any) => {
-    e.target.files.length == 1 && chooseImg(e);
-  };
+  useEffect(() => {
+    console.log("staticImg :", imgFile.staticImg);
+    console.log("prevStaticImg :", imgFile.prevStaticImg);
+    console.log("stringImg :", imgFile.stringImg);
+    console.log("prevStringImg :", imgFile.prevStringImg);
+  }, [imgFile]);
 
+  //사진 자르는 부분 display none 하고 자른 사진 보여주는 함수 : 사진 자르고 확인 눌렀을때 실행
   const onClickConfirm = () => {
-    setChoseFile(false);
-    setChangeBtn(false);
+    setChoseFile("");
+    setChangeBtn("");
     setConfirmBtn(true);
-    setDontShowCanvas(false);
+    setDontShowCanvas("");
   };
 
-  const onClickCancle = () => {
-    setChoseFile(false);
-    setChangeBtn(false);
+  const onClickCancel = () => {
+    console.log("취소 눌렀을때");
+
+    setImgFile((prevState) => ({
+      ...prevState,
+      staticImg: prevState.prevStaticImg,
+      stringImg: prevState.prevStringImg,
+    }));
+    setChoseFile("");
+    setChangeBtn("");
     setConfirmBtn(true);
-    setDontShowCanvas(false);
+    setDontShowCanvas("");
+    cavasDraw(cropAreaInfo.stateCroppedAreaPixels);
   };
 
   const onCropComplete = useCallback(
-    (croppedArea: Area, croppedAreaPixels: Area) => {
+    (croppedArea: cropArea, croppedAreaPixels: cropArea) => {
       console.log("excute");
+      setCropAreaInfo((prevState) => ({
+        ...prevState,
+        stateCroppedArea: {
+          height: croppedArea.height,
+          width: croppedArea.width,
+          x: croppedArea.x,
+          y: croppedArea.y,
+        },
+        stateCroppedAreaPixels: {
+          height: croppedAreaPixels.height,
+          width: croppedAreaPixels.width,
+          x: croppedAreaPixels.x,
+          y: croppedAreaPixels.y,
+        },
+      }));
+      cavasDraw(croppedAreaPixels);
+    },
+    []
+  );
 
-      const ctx = canvasRef.current.getContext("2d");
-      const image = document.getElementById("source1");
-      canvasRef.current.setAttribute("width", croppedAreaPixels.width);
-      canvasRef.current.setAttribute("height", croppedAreaPixels.height);
-      ctx.drawImage(
-        image,
+  const cavasDraw = (croppedAreaPixels: cropArea) => {
+    const ctx = canvasRef?.current?.getContext("2d");
+    const image = document.getElementById("source1");
+    canvasRef?.current?.setAttribute("width", String(croppedAreaPixels?.width));
+    canvasRef?.current?.setAttribute(
+      "height",
+      String(croppedAreaPixels?.height)
+    );
+
+    image!.onload = function () {
+      ctx?.drawImage(
+        image as CanvasImageSource,
         croppedAreaPixels.x,
         croppedAreaPixels.y,
         croppedAreaPixels.width,
@@ -135,25 +148,23 @@ const CropImg = () => {
         croppedAreaPixels.width,
         croppedAreaPixels.height
       );
-      image.onload = function () {
-        ctx.drawImage(
-          image,
-          croppedAreaPixels.x,
-          croppedAreaPixels.y,
-          croppedAreaPixels.width,
-          croppedAreaPixels.height,
-          0,
-          0,
-          croppedAreaPixels.width,
-          croppedAreaPixels.height
-        );
-      };
-    },
-    []
-  );
+    };
+
+    ctx?.drawImage(
+      image as CanvasImageSource,
+      croppedAreaPixels.x,
+      croppedAreaPixels.y,
+      croppedAreaPixels.width,
+      croppedAreaPixels.height,
+      0,
+      0,
+      croppedAreaPixels.width,
+      croppedAreaPixels.height
+    );
+  };
 
   return (
-    <CropContainer>
+    <C.CropContainer>
       <div id="imgDiv" className={dontShowDefault && "dontshow"}>
         <Image src={imgFile.staticImg} id="source1" width={200} height={200} />
       </div>
@@ -161,39 +172,51 @@ const CropImg = () => {
         className={dontShowCanvas && "dontshow"}
         id="source"
         ref={canvasRef}
-        width={croppedAreaPixels.width}
-        height={croppedAreaPixels.height}
+        width={cropAreaInfo.stateCroppedAreaPixels.width}
+        height={cropAreaInfo.stateCroppedAreaPixels.height}
       ></canvas>
       <input
         type="file"
         className={changeBtn && "dontshow"}
-        onChange={saveFileImg}
+        onChange={uploadFile}
         accept="image/*"
       />
+
       {choseFile && (
-        <div style={{ position: "relative", width: 400, height: 400 }}>
-          <Cropper
-            image={imgFile.stringImg}
-            crop={crop}
-            aspect={1 / 1}
-            onCropChange={setCrop}
-            onCropComplete={onCropComplete}
-            cropShape={"round"}
-            cropSize={{ width: 200, height: 200 }}
-            showGrid={false}
-            zoom={zoom}
-            onZoomChange={setZoom}
-          />
-        </div>
+        <C.CropperContainer>
+          <div className="cropperDiv">
+            <Cropper
+              image={imgFile.stringImg}
+              crop={crop}
+              aspect={1 / 1}
+              onCropChange={setCrop}
+              onCropComplete={onCropComplete}
+              cropShape={"round"}
+              cropSize={{ width: 200, height: 200 }}
+              showGrid={false}
+              zoom={zoom}
+              onZoomChange={setZoom}
+            />
+          </div>
+          <div className="btnDiv">
+            <button
+              className={confirmBtn && "dontshow"}
+              onClick={onClickConfirm}
+              id="confirm"
+            >
+              확인
+            </button>
+            <button
+              className={confirmBtn && "dontshow"}
+              onClick={onClickCancel}
+              id="cancle"
+            >
+              취소
+            </button>
+          </div>
+        </C.CropperContainer>
       )}
-      <button className={confirmBtn && "dontshow"} onClick={onClickConfirm}>
-        확인
-      </button>
-      <button className={confirmBtn && "dontshow"} onClick={onClickCancle}>
-        취소
-      </button>
-    </CropContainer>
+    </C.CropContainer>
   );
 };
-
 export default CropImg;
