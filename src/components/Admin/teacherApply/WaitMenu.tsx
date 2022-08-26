@@ -46,10 +46,10 @@ const WaitMenu = () => {
               <button className="closed" onClick={closed}>
                 거절
               </button>
-              <button className="approve" onClick={() => setVisiable2(j)}>
+              <button className="approve" onClick={() => setVisiable(j)}>
                 수락
               </button>
-            </div>
+            </div
           </div>
         ))}
       </div>
