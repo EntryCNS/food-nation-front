@@ -25,42 +25,42 @@ const NavBar: React.FC = () => {
           <ul>
             <li>
               <Link href="/">
-                <N.IMG selected={selectedNavBarElement.home}>
+                <N.IMG selected={selectedNavBarElement.home} title="홈">
                   <Home className="img" />
                 </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="/profile">
-                <N.IMG selected={selectedNavBarElement.profile}>
+                <N.IMG selected={selectedNavBarElement.profile} title="프로필">
                   <Profile className="img" />
                 </N.IMG>
               </Link>
             </li>
             <li>
-              <Link href="/addMenu">
-                <N.IMG selected={selectedNavBarElement.addMenu}>
+              <Link href="/apply">
+                <N.IMG selected={selectedNavBarElement.addMenu} title="메뉴신청">
                   <AddMenu className="img" />
                 </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <N.IMG selected={selectedNavBarElement.checkMenu}>
+                <N.IMG selected={selectedNavBarElement.checkMenu} title="메뉴확인">
                   <CheckMenu className="img" />
                 </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="#">
-                <N.IMG selected={selectedNavBarElement.ranking}>
+                <N.IMG selected={selectedNavBarElement.ranking} title="랭킹">
                   <Ranking className="img" />
                 </N.IMG>
               </Link>
             </li>
             <li>
               <Link href="/review">
-                <N.IMG selected={selectedNavBarElement.review}>
+                <N.IMG selected={selectedNavBarElement.review} title="리뷰">
                   <Review className="img" />
                 </N.IMG>
               </Link>
@@ -73,7 +73,7 @@ const NavBar: React.FC = () => {
           </N.Indicator>
         </N.Navigate>
 
-        <N.LogoutBtn>
+        <N.LogoutBtn title="로그아웃">
           <Logout className="img" />
         </N.LogoutBtn>
       </N.Wrapper>
