@@ -7,24 +7,16 @@ import Breakfast from "../../../assets/image/menu/breakfast.svg";
 import lunch from "assets/image/menu/lunch.png";
 import dinner from "assets/image/menu/dinner.png";
 
+import Modal from "components/common/modal";
+import Calendar from "components/common/calendar";
+
 const Menu = () => {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  function openModal() {
-    setModalOpen(true);
-  }
-  function closeModal() {
-    setModalOpen(false);
-  }
-
   return (
       <M.Container>
         <M.DateBox>
           <Arrow id="left" className="svg" />
           <M.Date>0000 . 00 . 00 (일)</M.Date>
-          <div onClick={openModal}>
             <CalendarSvg id="calender" className="svg" />
-          </div>
           <Arrow id="right" className="svg" />
         </M.DateBox>
 
@@ -55,6 +47,7 @@ const Menu = () => {
         </M.MenuBox>
       </M.Container>
   );
+
 };
 
 export default Menu;

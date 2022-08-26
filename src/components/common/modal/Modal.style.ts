@@ -2,6 +2,8 @@ import styled, { ThemedGlobalStyledClassProps } from "styled-components";
 
 interface ModalProps {
     visible?:boolean;
+    top?:number;
+    left?:number;
 }
 
 const ModalBasic = styled.div<ModalProps>`
@@ -25,14 +27,14 @@ export const ModalWrapper = styled(ModalBasic)`
   background:none;
 `;
 
-export const ModalInner = styled.div`
+export const ModalInner = styled.div<ModalProps>`
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
   background-color: ${(props) => props.theme.background};
   border-radius: 10px;
-  top: 50%;
   transform: translateY(-50%);
+  top: 50%;
   margin: 0 auto;
   width:fit-content;
   transition:width 0.5s;
