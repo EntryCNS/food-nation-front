@@ -25,7 +25,7 @@ const Modal = ({
       <M.ModalOverlay visible={visible} />
       <M.ModalWrapper
         visible={visible}
-        onClick={maskCloseable ? onMaskClick : undefined}
+        onMouseDown={maskCloseable ? onMaskClick : undefined}
         tabIndex={-1}
       >
         <M.ModalInner 
