@@ -8,8 +8,6 @@ import DarkMode from "../../assets/image/main/darkMode.svg";
 import review from "assets/image/main/review.png";
 import checkMenu from "assets/image/main/checkMenu.png";
 import applyMenu from "assets/image/main/applyMenu.png";
-import background from "assets/image/main/background.png";
-
 
 import { useTheme } from "hooks/useTheme";
 
@@ -23,46 +21,46 @@ const Main = () => {
   const { handleDarkMode, darkMode } = useTheme();
   return (
     <M.Wrapper>
-      <Menu />
+      <Menu isCalander={true} />
 
       <Link href="#">
-      <M.RankingContainer>
-        <h1>랭킹</h1>
-        <Arrow id="arrow" fill="red" />
-        <p>기여도를 순위를 확인하세요</p>
+        <M.RankingContainer>
+          <h1>랭킹</h1>
+          <Arrow id="arrow" fill="red" />
+          <p>기여도를 순위를 확인하세요</p>
 
-        <M.RankingBox>
-          {user.map(({ name, rank }) => (
-            <M.RankingItem key={rank}>
-              <M.RankingProfile />
-              <p>{name}</p>
-              <M.RankingNumber>{rank}</M.RankingNumber>
-            </M.RankingItem>
-          ))}
-        </M.RankingBox>
-      </M.RankingContainer>
+          <M.RankingBox>
+            {user.map(({ name, rank }) => (
+              <M.RankingItem key={rank}>
+                <M.RankingProfile />
+                <p>{name}</p>
+                <M.RankingNumber>{rank}</M.RankingNumber>
+              </M.RankingItem>
+            ))}
+          </M.RankingBox>
+        </M.RankingContainer>
       </Link>
 
       <Link href="#">
-      <M.MenuCheckBar>
-        <h1>꿈이 이루어진다</h1>
-        <Arrow id="arrow" />
-        <p>수락된 메뉴를 확인하세요</p>
-        <M.IMGBox marginTop={60}>
-          <Image src={checkMenu} />
-        </M.IMGBox>
-      </M.MenuCheckBar>
+        <M.MenuCheckBar>
+          <h1>꿈이 이루어진다</h1>
+          <Arrow id="arrow" />
+          <p>수락된 메뉴를 확인하세요</p>
+          <M.IMGBox marginTop={60}>
+            <Image src={checkMenu} />
+          </M.IMGBox>
+        </M.MenuCheckBar>
       </Link>
 
       <Link href="/apply">
-      <M.ApplyMenuBar>
-        <h1>급식 신청</h1>
-        <Arrow id="arrow" />
-        <p>원하는 급식을 신청하세요</p>
-        <M.IMGBox marginTop={80}>
-          <Image src={applyMenu} width={292} height={223} />
-        </M.IMGBox>
-      </M.ApplyMenuBar>
+        <M.ApplyMenuBar>
+          <h1>급식 신청</h1>
+          <Arrow id="arrow" />
+          <p>원하는 급식을 신청하세요</p>
+          <M.IMGBox marginTop={80}>
+            <Image src={applyMenu} width={292} height={223} />
+          </M.IMGBox>
+        </M.ApplyMenuBar>
       </Link>
 
       <M.OtherCotainer>
@@ -72,14 +70,14 @@ const Main = () => {
         </M.darkModeBtn>
 
         <Link href="/review">
-        <M.ReviewBar>
-          <h1>리뷰 쓰기</h1>
-          <Arrow id="arrow" />
-          <p>리뷰를 남겨주세요</p>
-          <M.IMGBox marginTop={10}>
-            <Image src={review} id="review" />
-          </M.IMGBox>
-        </M.ReviewBar>
+          <M.ReviewBar>
+            <h1>리뷰 쓰기</h1>
+            <Arrow id="arrow" />
+            <p>리뷰를 남겨주세요</p>
+            <M.IMGBox marginTop={10}>
+              <Image src={review} id="review" />
+            </M.IMGBox>
+          </M.ReviewBar>
         </Link>
       </M.OtherCotainer>
     </M.Wrapper>
